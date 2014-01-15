@@ -21,7 +21,12 @@ module.exports = function(grunt) {
         }
       }
     },
-    watch: {}
+    watch: {},
+    karma: {
+      'summernote': {
+        configFile: './test/karma.conf.js'
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
@@ -31,6 +36,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', []);
-  grunt.registerTask('test', []);
+  grunt.registerTask('test', ['karma:summernote']);
   grunt.registerTask('lint', ['jshint']);
 };

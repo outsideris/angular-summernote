@@ -10,5 +10,8 @@
     "summernote": "~0.5.0",
     "angular": "~1.2.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "angular-mocks": "~1.2.8"
+  }
 }
