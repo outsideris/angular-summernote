@@ -7,3 +7,5 @@ tmp/
 .project
 .cache
 .settings/
+
+examples/components/

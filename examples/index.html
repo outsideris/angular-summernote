@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="summernoteDemo">
+<head>
+  <title>Angular-summernote Demo</title>
+
+  <!--summernote dependencies-->
+  <script src="components/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
+
+  <!--summernote-->
+  <link rel="stylesheet" href="components/summernote/dist/summernote.css" />
+  <script src="components/summernote/dist/summernote.min.js"></script>
+
+  <!--angular-summernote dependencies -->
+  <script src="components/angular/angular.min.js"></script>
+  <script src="../src/angular-summernote.js"></script>
+</head>
+<body>
+  <summernote></summernote>
+
+  <script>
+    angular.module('summernoteDemo', ['summernote']);
+  </script>
+</body>
+</html>
