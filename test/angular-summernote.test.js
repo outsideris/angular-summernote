@@ -88,4 +88,41 @@ describe('Summernote directive', function() {
       expect(hasFocus).to.be.true;
     });
   });
+
+  describe('summernoteConfig', function() {
+    var originalConfig = {};
+
+    beforeEach(inject(function(summernoteConfig) {
+      angular.extend(originalConfig, summernoteConfig);
+      summernoteConfig.height = 300;
+      summernoteConfig.focus = true;
+      summernoteConfig.toolbar = [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+      ];
+    }));
+    afterEach(inject(function(summernoteConfig) {
+      // return it to the original state
+      angular.extend(summernoteConfig, originalConfig);
+    }));
+
+    it('"height" should be 300', function() {
+      element = $compile('<summernote></summernote>')($rootScope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-editable').outerHeight()).to.be.equal(300);
+    });
+
+    it('toolbar should be customized', function() {
+      element = $compile('<summernote></summernote>')($rootScope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-toolbar > .note-fontsize')).to.length(1);
+      expect(element.next().find('.note-toolbar > .note-help')).to.length(0);
+    });
+  });
+
 });
