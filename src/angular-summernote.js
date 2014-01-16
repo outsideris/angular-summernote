@@ -6,10 +6,17 @@
 
 angular.module('summernote', [])
 
-  .controller('SummernoteController', ['$scope', '$attrs', function($scope, $attrs) {
+  .constant('summernoteConfig', {
+
+  })
+
+  .controller('SummernoteController', ['$scope', '$attrs', 'summernoteConfig', function($scope, $attrs, summernoteConfig) {
+
+    if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
+    if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
 
     this.activate = function(scope, element) {
-      element.summernote();
+      element.summernote(summernoteConfig);
     };
 
   }])

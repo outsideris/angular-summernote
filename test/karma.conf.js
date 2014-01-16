@@ -18,9 +18,9 @@ module.exports = function(config) {
     files: [
       // dependencies
       '../examples/components/jquery/jquery.js',
-      '../examples/components/angular/angular.js',
       '../examples/components/bootstrap/dist/js/bootstrap.min.js',
       '../examples/components/summernote/dist/summernote.min.js',
+      '../examples/components/angular/angular.min.js',
 
       // application code
       '../src/**/*.js',
