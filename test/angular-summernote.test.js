@@ -86,6 +86,9 @@ describe('Summernote directive', function() {
 
       var hasFocus = (document.activeElement == element.next().find('.note-editable').get(0));
       expect(hasFocus).to.be.true;
+
+      el.next().remove();
+      el.remove();
     });
   });
 
@@ -106,7 +109,9 @@ describe('Summernote directive', function() {
     }));
     afterEach(inject(function(summernoteConfig) {
       // return it to the original state
-      angular.extend(summernoteConfig, originalConfig);
+      delete summernoteConfig.height;
+      delete summernoteConfig.focus;
+      delete summernoteConfig.toolbar;
     }));
 
     it('"height" should be 300', function() {
@@ -145,11 +150,17 @@ describe('Summernote directive', function() {
   });
 
   describe('code', function() {
-    var scope;
+    var scope, originalConfig = {};
 
-    beforeEach(function() {
+    beforeEach(inject(function(summernoteConfig) {
       scope = $rootScope.$new();
-    });
+      angular.extend(originalConfig, summernoteConfig);
+      summernoteConfig.focus = true;
+    }));
+    afterEach(inject(function(summernoteConfig) {
+      // return it to the original state
+      delete summernoteConfig.focus;
+    }));
 
     it('text should be synchronized when value are changed in outer scope', function() {
       // given
@@ -169,8 +180,7 @@ describe('Summernote directive', function() {
       var oldText = 'Hello World!', newText = 'new text';
       // given
       scope.text = oldText;
-      var el = $('<summernote code="text"></summernote>');
-      el.appendTo(document.body);
+      var el = $('<summernote code="text"></summernote>').appendTo(document.body);
       element = $compile(el)(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
@@ -180,6 +190,9 @@ describe('Summernote directive', function() {
       scope.$digest();
       // then
       expect(scope.text).to.be.equal(newText);
+
+      el.next().remove();
+      el.remove();
     });
   });
 

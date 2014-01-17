@@ -6,9 +6,7 @@
 
 angular.module('summernote', [])
 
-  .constant('summernoteConfig', {
-
-  })
+  .constant('summernoteConfig', {})
 
   .controller('SummernoteController', ['$scope', '$attrs', 'summernoteConfig', function($scope, $attrs, summernoteConfig) {
     var currentElement, codeInSummernote;
