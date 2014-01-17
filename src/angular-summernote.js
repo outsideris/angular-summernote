@@ -11,13 +11,19 @@ angular.module('summernote', [])
   })
 
   .controller('SummernoteController', ['$scope', '$attrs', 'summernoteConfig', function($scope, $attrs, summernoteConfig) {
+    var currentElement;
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
 
     this.activate = function(scope, element) {
       element.summernote(summernoteConfig);
+      currentElement = element;
     };
+
+    $scope.$on('$destroy', function () {
+      currentElement.destroy();
+    });
 
   }])
   .directive('summernote', [function() {

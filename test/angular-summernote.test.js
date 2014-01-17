@@ -125,4 +125,23 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('destroy', function() {
+    var scope;
+
+    beforeEach(function() {
+      scope = $rootScope.$new();
+    });
+
+    it('shoud be destroyed when scope is destroyed.', function() {
+      // given
+      element = $compile('<summernote></summernote>')(scope);
+      scope.$digest();
+      expect(element.next().hasClass('note-editor')).to.be.true;
+      // when
+      scope.$destroy();
+      // then
+      expect(element.next().hasClass('note-editor')).to.be.false;
+    });
+  });
+
 });
