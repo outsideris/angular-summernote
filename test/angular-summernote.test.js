@@ -144,4 +144,43 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('code', function() {
+    var scope;
+
+    beforeEach(function() {
+      scope = $rootScope.$new();
+    });
+
+    it('text should be synchronized when value are changed in outer scope', function() {
+      // given
+      var oldText = 'Hello World!', newText = 'new text';
+      scope.text = oldText;
+      element = $compile('<summernote code="text"></summernote>')(scope);
+      scope.$digest();
+      expect(element.code()).to.be.equal(oldText);
+      // when
+      scope.text = newText;
+      scope.$digest();
+      // then
+      expect(element.code()).to.be.equal(newText);
+    });
+
+    it('text should be synchronized when value are changed in summernote', function() {
+      var oldText = 'Hello World!', newText = 'new text';
+      // given
+      scope.text = oldText;
+      var el = $('<summernote code="text"></summernote>');
+      el.appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      expect(element.code()).to.be.equal(oldText);
+      // when
+      element.code(newText);
+      $(element.next().find('.note-editable').eq(0)).trigger('keyup');
+      scope.$digest();
+      // then
+      expect(scope.text).to.be.equal(newText);
+    });
+  });
+
 });
