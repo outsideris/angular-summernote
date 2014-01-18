@@ -11,17 +11,69 @@
 
   <!--summernote-->
   <link rel="stylesheet" href="components/summernote/dist/summernote.css" />
-  <script src="components/summernote/dist/summernote.min.js"></script>
+  <script src="components/summernote/dist/summernote.js"></script>
 
   <!--angular-summernote dependencies -->
   <script src="components/angular/angular.min.js"></script>
   <script src="../src/angular-summernote.js"></script>
+
+  <style>
+    body {
+      margin: 10px 20px;
+    }
+  </style>
 </head>
 <body>
+  <h1>angular-summernote</h1>
+  <p>angular directive for <a href="http://hackerwins.github.io/summernote/">Summernote</a></p>
+
+  <h2>summernote directive</h2>
+
+  <h4>use element</h4>
   <summernote></summernote>
 
+  <h4>use attribute</h4>
+  <div summernote></div>
+
+  <h2>summernote options</h2>
+
+  <h4>height</h4>
+  <summernote height="300"></summernote>
+
+  <h4>focus</h4>
+  <summernote focus></summernote>
+
+  <div ng-controller="OptCtrl">
+    <h4>options object</h4>
+    <summernote config="options"></summernote>
+  </div>
+
+  <div ng-controller="CodeCtrl">
+    <h4>code : HTML string in summernote</h4>
+    <summernote code="text"></summernote>
+
+    <br>
+    <textarea type="text" ng-model="text" style="width:100%;"></textarea></br>
+    text : {{text}}
+  </div>
+
   <script>
-    angular.module('summernoteDemo', ['summernote']);
+    angular.module('summernoteDemo', ['summernote'])
+        .controller('OptCtrl', function($scope) {
+          $scope.options = {
+            height: 150,
+            toolbar: [
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['height', ['height']]
+            ]
+          };
+        })
+        .controller('CodeCtrl', function($scope) {
+          $scope.text = "Hello World";
+        });
   </script>
 </body>
 </html>
