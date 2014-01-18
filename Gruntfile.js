@@ -27,6 +27,11 @@ module.exports = function(grunt) {
     karma: {
       'summernote': {
         configFile: './test/karma.conf.js'
+      },
+      travis: {
+        singleRun: true,
+        configFile: './test/karma.conf.js',
+        browsers: ['Firefox']
       }
     },
     uglify: {
@@ -54,6 +59,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', []);
   grunt.registerTask('test', ['karma:summernote']);
+  grunt.registerTask('travis', ['karma:travis']);
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('deploy', ['uglify:deploy']);
 };
