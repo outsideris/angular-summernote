@@ -74,11 +74,11 @@ describe('Summernote directive', function() {
 
   describe('"focus" option', function() {
     it('should be focused if it specified', function () {
-      var el = $('<summernote focus>Hello world</summernote>').appendTo(document.body);
+      var el = $('<summernote focus height="400"></summernote>').appendTo(document.body);
       element = $compile(el)($rootScope);
       $rootScope.$digest();
 
-      expect(element.next().find('.note-editable:focus')).to.length(1);
+      expect(element.next().find('.note-editable').get(0)).to.be.equal(document.activeElement);
 
       el.next().remove();
       el.remove();
@@ -86,36 +86,32 @@ describe('Summernote directive', function() {
   });
 
   describe('summernoteConfig', function() {
-    var originalConfig = {};
+    var scope;
 
-    beforeEach(inject(function(summernoteConfig) {
-      angular.extend(originalConfig, summernoteConfig);
-      summernoteConfig.height = 300;
-      summernoteConfig.focus = true;
-      summernoteConfig.toolbar = [
-        ['style', ['bold', 'italic', 'underline', 'clear']],
-        ['fontsize', ['fontsize']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['height', ['height']],
-      ];
-    }));
-    afterEach(inject(function(summernoteConfig) {
-      // return it to the original state
-      delete summernoteConfig.height;
-      delete summernoteConfig.focus;
-      delete summernoteConfig.toolbar;
-    }));
+    beforeEach(function() {
+      scope = $rootScope.$new();
+      scope.summernoteConfig = {
+        height: 300,
+        focus: true,
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['height', ['height']]
+        ]
+      };
+    });
 
     it('"height" should be 300', function() {
-      element = $compile('<summernote></summernote>')($rootScope);
+      element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').outerHeight()).to.be.equal(300);
     });
 
     it('toolbar should be customized', function() {
-      element = $compile('<summernote></summernote>')($rootScope);
+      element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-toolbar > .note-fontsize')).to.length(1);
@@ -152,17 +148,12 @@ describe('Summernote directive', function() {
   });
 
   describe('code', function() {
-    var scope, originalConfig = {};
+    var scope;
 
-    beforeEach(inject(function(summernoteConfig) {
+    beforeEach(function() {
       scope = $rootScope.$new();
-      angular.extend(originalConfig, summernoteConfig);
-      summernoteConfig.focus = true;
-    }));
-    afterEach(inject(function(summernoteConfig) {
-      // return it to the original state
-      delete summernoteConfig.focus;
-    }));
+      scope.summernoteConfig = {focus: true};
+    });
 
     it('text should be synchronized when value are changed in outer scope', function() {
       // given
@@ -201,10 +192,10 @@ describe('Summernote directive', function() {
   describe('callbacks', function() {
     var scope;
 
-    beforeEach(inject(function(summernoteConfig) {
-      summernoteConfig = {focus: false};
+    beforeEach(function() {
       scope = $rootScope.$new();
-    }));
+      scope.summernoteConfig = {focus: false};
+    });
 
     it('oninit should be invoked', function(done) {
       scope.init = function() {

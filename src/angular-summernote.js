@@ -6,12 +6,12 @@
 /* global angular */
 angular.module('summernote', [])
 
-  .constant('summernoteConfig', {})
-
-  .controller('SummernoteController', ['$scope', '$attrs', 'summernoteConfig', function($scope, $attrs, summernoteConfig) {
+  .controller('SummernoteController', ['$scope', '$attrs', function($scope, $attrs) {
     'use strict';
 
-    var currentElement, codeInSummernote;
+    var currentElement, codeInSummernote,
+        summernoteConfig = $scope.summernoteConfig || {};
+
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
@@ -71,6 +71,7 @@ angular.module('summernote', [])
       controller: 'SummernoteController',
       scope: {
         code: '=',
+        summernoteConfig: '=config',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',
