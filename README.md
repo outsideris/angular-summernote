@@ -3,6 +3,8 @@
 ***
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Build Status](https://travis-ci.org/outsideris/angular-summernote.png?branch=master)](https://travis-ci.org/outsideris/angular-summernote)
+[![Dependency Status](https://gemnasium.com/outsideris/angular-summernote.png)](https://gemnasium.com/outsideris/angular-summernote)
 
 angular-summernote is just a directive to bind summmernote's all features.
 You can use summernote with angular way.
