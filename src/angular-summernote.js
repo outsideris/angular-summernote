@@ -12,7 +12,6 @@ angular.module('summernote', [])
     var currentElement, codeInSummernote,
         summernoteConfig = $scope.summernoteConfig || {};
 
-
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
     if (angular.isDefined($attrs.lang)) {
@@ -36,9 +35,9 @@ angular.module('summernote', [])
     this.activate = function(scope, element) {
       summernoteConfig.onkeyup = function(evt) {
         if (scope.code !== element.code()) {
-          if (scope.code) { scope.code = element.code(); }
           codeInSummernote = element.code();
-          if ($scope.$$phase === '$apply' || $scope.$$phase === '$digest' ) {
+          if (scope.code) { scope.code = element.code(); }
+          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) {
             scope.$apply();
           }
         }
