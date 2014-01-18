@@ -1,12 +1,12 @@
 {
   "name": "angular-summernote",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "ignore": [
-    "**/.*",
     "node_modules",
     "examples/",
     "test/",
-    "*.js",
+    "Gruntfile.js",
+    "karma.conf.js",
     "package.json",
     ".jshintrc",
     ".gitignore",
