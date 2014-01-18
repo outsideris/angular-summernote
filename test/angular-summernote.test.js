@@ -72,20 +72,13 @@ describe('Summernote directive', function() {
 
   });
 
-  // TODO: "focus" options couldn't test
-  // because dom is drew lazily in karma
   describe('"focus" option', function() {
-
-    it.skip('should be focused if it specified', function () {
+    it('should be focused if it specified', function () {
       var el = $('<summernote focus>Hello world</summernote>').appendTo(document.body);
       element = $compile(el)($rootScope);
-      element.next().appendTo(document.body);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable:focus')).to.length(1);
-
-      var hasFocus = (document.activeElement === element.next().find('.note-editable').get(0));
-      expect(hasFocus).to.be.true;
 
       el.next().remove();
       el.remove();
