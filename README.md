@@ -9,8 +9,8 @@ You can use summernote with angular way.
 
 ## Demo
 
-see in JSFiddle or run example in projects(need to run `bower install`
-before run)
+See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/embedded/result%2Chtml%2Cjs%2Ccss/)
+or run example in projects(need to run `bower install` before run)
 
 ## Installation
 
