@@ -303,6 +303,8 @@ describe('Summernote directive', function() {
       el.next().remove();
       el.remove();
     });
+
+    // TODO: add tests for onImageUpload
   });
 
 });

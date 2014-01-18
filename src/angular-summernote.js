@@ -19,6 +19,11 @@ angular.module('summernote', [])
     summernoteConfig.onfocus = function(evt) { $scope.focus({evt:evt}); };
     summernoteConfig.onblur = function(evt) { $scope.blur({evt:evt}); };
     summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
+    if (angular.isDefined($attrs.onImageUpload)) {
+      summernoteConfig.onImageUpload = function(files, editor, welEditable) {
+        $scope.imageUpload({files:files, editor:editor, welEditable:welEditable});
+      };
+    }
 
     this.activate = function(scope, element) {
       summernoteConfig.onkeyup = function(evt) {
@@ -61,7 +66,8 @@ angular.module('summernote', [])
         focus: '&onFocus',
         blur: '&onBlur',
         keyup: '&onKeyup',
-        keydown: '&onKeydown'
+        keydown: '&onKeydown',
+        imageUpload: '&onImageUpload'
       },
       template: '<div class="summernote"></div>',
       link: function(scope, element, attrs, summernoteController) {
