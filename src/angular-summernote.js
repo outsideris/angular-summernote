@@ -14,14 +14,22 @@ angular.module('summernote', [])
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
 
+    summernoteConfig.oninit = $scope.init;
+    summernoteConfig.onenter = function(evt) { $scope.enter({evt:evt}); };
+    summernoteConfig.onfocus = function(evt) { $scope.focus({evt:evt}); };
+    summernoteConfig.onblur = function(evt) { $scope.blur({evt:evt}); };
+    summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
+
     this.activate = function(scope, element) {
-      summernoteConfig.onkeyup = function(e) {
+      summernoteConfig.onkeyup = function(evt) {
         if (scope.code !== element.code()) {
-          codeInSummernote = scope.code = element.code();
+          if (scope.code) { scope.code = element.code(); }
+          codeInSummernote = element.code();
           if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest' ) {
             scope.$apply();
           }
         }
+        $scope.keyup({evt:evt});
       };
 
       element.summernote(summernoteConfig);
@@ -47,7 +55,13 @@ angular.module('summernote', [])
       replace: true,
       controller: 'SummernoteController',
       scope: {
-        code: '='
+        code: '=',
+        init: '&onInit',
+        enter: '&onEnter',
+        focus: '&onFocus',
+        blur: '&onBlur',
+        keyup: '&onKeyup',
+        keydown: '&onKeydown'
       },
       template: '<div class="summernote"></div>',
       link: function(scope, element, attrs, summernoteController) {

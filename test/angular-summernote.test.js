@@ -196,4 +196,113 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('callbacks', function() {
+    var scope;
+
+    beforeEach(inject(function(summernoteConfig) {
+      summernoteConfig = {focus: false};
+      scope = $rootScope.$new();
+    }));
+
+    it('oninit should be invoked', function(done) {
+      scope.init = function() {
+        expect(true).to.be.true;
+        done();
+      };
+      element = $compile('<summernote on-init="init()"></summernote>')(scope);
+      scope.$digest();
+    });
+
+    it('onenter should be invoked', function(done) {
+      scope.enter = function() {
+        // then
+        expect(true).to.be.true;
+        done();
+      };
+      // given
+      var el = $('<summernote on-enter="enter()"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      var e= jQuery.Event("keypress"); e.keyCode = 13; // Enter key
+      element.next().find('.note-editable').trigger(e);
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
+    it('onfocus should be invoked', function(done) {
+      scope.focus = function(e) {
+        // then
+        expect(e).exist;
+        done();
+      };
+      // given
+      var el = $('<summernote on-focus="focus(evt)"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      element.next().find('.note-editable').focus();
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
+    it('onblur should be invoked', function(done) {
+      scope.blur = function(e) {
+        // then
+        expect(e).exist;
+        done();
+      };
+      // given
+      var el = $('<summernote on-blur="blur(evt)"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      element.next().find('.note-editable').blur();
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
+    it('onkeyup should be invoked', function(done) {
+      scope.keyup = function(e) {
+        // then
+        expect(e).exist;
+        done();
+      };
+      // given
+      var el = $('<summernote on-keyup="keyup(evt)"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      element.next().find('.note-editable').keyup();
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
+    it('onkeydown should be invoked', function(done) {
+      scope.keydown = function(e) {
+        // then
+        expect(e).exist;
+        done();
+      };
+      // given
+      var el = $('<summernote on-keydown="keydown(evt)"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      element.next().find('.note-editable').keydown();
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+  });
+
 });
