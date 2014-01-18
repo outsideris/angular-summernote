@@ -84,7 +84,7 @@ describe('Summernote directive', function() {
 
       expect(element.next().find('.note-editable:focus')).to.length(1);
 
-      var hasFocus = (document.activeElement == element.next().find('.note-editable').get(0));
+      var hasFocus = (document.activeElement === element.next().find('.note-editable').get(0));
       expect(hasFocus).to.be.true;
 
       el.next().remove();
@@ -233,7 +233,8 @@ describe('Summernote directive', function() {
       element = $compile(el)(scope);
       scope.$digest();
       // when
-      var e= jQuery.Event("keypress"); e.keyCode = 13; // Enter key
+      var e= jQuery.Event('keypress');
+      e.keyCode = 13; // Enter key
       element.next().find('.note-editable').trigger(e);
       scope.$digest();
       // tear down

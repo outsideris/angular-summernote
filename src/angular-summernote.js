@@ -3,19 +3,21 @@
  * Licensed under the MIT license.
  * <http://outsider.mit-license.org/>
  */
-
+/* global angular */
 angular.module('summernote', [])
 
   .constant('summernoteConfig', {})
 
   .controller('SummernoteController', ['$scope', '$attrs', 'summernoteConfig', function($scope, $attrs, summernoteConfig) {
+    'use strict';
+
     var currentElement, codeInSummernote;
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
     if (angular.isDefined($attrs.lang)) {
       if (!angular.isDefined($.summernote.lang[$attrs.lang])) {
-        throw new Error("'" + $attrs.lang + "' lang file must be exist.");
+        throw new Error('"' + $attrs.lang + '" lang file must be exist.');
       }
       summernoteConfig.lang = $attrs.lang;
     }
@@ -36,7 +38,7 @@ angular.module('summernote', [])
         if (scope.code !== element.code()) {
           if (scope.code) { scope.code = element.code(); }
           codeInSummernote = element.code();
-          if ($scope.$$phase == '$apply' || $scope.$$phase == '$digest' ) {
+          if ($scope.$$phase === '$apply' || $scope.$$phase === '$digest' ) {
             scope.$apply();
           }
         }
@@ -60,6 +62,8 @@ angular.module('summernote', [])
     });
   }])
   .directive('summernote', [function() {
+    'use strict';
+
     return {
       restrict: 'EA',
       transclude: true,
