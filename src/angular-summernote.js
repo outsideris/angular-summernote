@@ -13,6 +13,12 @@ angular.module('summernote', [])
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
+    if (angular.isDefined($attrs.lang)) {
+      if (!angular.isDefined($.summernote.lang[$attrs.lang])) {
+        throw new Error("'" + $attrs.lang + "' lang file must be exist.");
+      }
+      summernoteConfig.lang = $attrs.lang;
+    }
 
     summernoteConfig.oninit = $scope.init;
     summernoteConfig.onenter = function(evt) { $scope.enter({evt:evt}); };

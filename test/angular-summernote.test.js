@@ -128,6 +128,15 @@ describe('Summernote directive', function() {
       expect(element.next().find('.note-toolbar > .note-fontsize')).to.length(1);
       expect(element.next().find('.note-toolbar > .note-help')).to.length(0);
     });
+
+    it('"lang" needs the lang file', function() {
+      var fn = $compile('<summernote lang="ko-KR"></summernote>');
+      try {
+        fn($rootScope);
+      } catch(e) {
+        expect(e.message).to.be.exist;
+      }
+    });
   });
 
   describe('destroy', function() {
@@ -235,7 +244,7 @@ describe('Summernote directive', function() {
     it('onfocus should be invoked', function(done) {
       scope.focus = function(e) {
         // then
-        expect(e).exist;
+        expect(e).to.be.exist;
         done();
       };
       // given
@@ -253,7 +262,7 @@ describe('Summernote directive', function() {
     it('onblur should be invoked', function(done) {
       scope.blur = function(e) {
         // then
-        expect(e).exist;
+        expect(e).to.be.exist;
         done();
       };
       // given
@@ -271,7 +280,7 @@ describe('Summernote directive', function() {
     it('onkeyup should be invoked', function(done) {
       scope.keyup = function(e) {
         // then
-        expect(e).exist;
+        expect(e).to.be.exist;
         done();
       };
       // given
@@ -289,7 +298,7 @@ describe('Summernote directive', function() {
     it('onkeydown should be invoked', function(done) {
       scope.keydown = function(e) {
         // then
-        expect(e).exist;
+        expect(e).to.be.exist;
         done();
       };
       // given
