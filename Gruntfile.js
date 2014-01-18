@@ -28,6 +28,21 @@ module.exports = function(grunt) {
       'summernote': {
         configFile: './test/karma.conf.js'
       }
+    },
+    uglify: {
+      deploy: {
+        options: {
+          mangle: false,
+          banner: '/*\n' +
+                  '  angular-summernote v<%=pkg.version%>\n' +
+                  '  Copyright 2014 Jeonghoon Byun\n' +
+                  '  License: MIT\n' +
+                  ' */\n'
+        },
+        files: {
+          'dist/angular-summernote.min.js': ['src/angular-summernote.js']
+        }
+      }
     }
   });
 
@@ -40,4 +55,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', []);
   grunt.registerTask('test', ['karma:summernote']);
   grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('deploy', ['uglify:deploy']);
 };

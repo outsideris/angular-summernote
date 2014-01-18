@@ -4,7 +4,14 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
+    "examples/",
+    "test/",
+    "*.js",
+    "package.json",
+    ".jshintrc",
+    ".gitignore",
+    ".editorconfig",
+    ".bowerrc"
   ],
   "dependencies": {
     "summernote": "~0.5.0",
