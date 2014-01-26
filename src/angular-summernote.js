@@ -9,7 +9,7 @@ angular.module('summernote', [])
   .controller('SummernoteController', ['$scope', '$attrs', function($scope, $attrs) {
     'use strict';
 
-    var currentElement, codeInSummernote,
+    var currentElement,
         summernoteConfig = $scope.summernoteConfig || {};
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
@@ -32,11 +32,11 @@ angular.module('summernote', [])
       };
     }
 
-    this.activate = function(scope, element) {
+    this.activate = function(scope, element, ngModel) {
       summernoteConfig.onkeyup = function(evt) {
-        if (scope.code !== element.code()) {
-          codeInSummernote = element.code();
-          if (scope.code) { scope.code = element.code(); }
+        var newValue = element.code();
+        if (ngModel && ngModel.$viewValue !== newValue) {
+          ngModel.$setViewValue(newValue);
           if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) {
             scope.$apply();
           }
@@ -45,19 +45,18 @@ angular.module('summernote', [])
       };
 
       element.summernote(summernoteConfig);
-      element.code(scope.code);
+
+      if (ngModel) {
+        ngModel.$render = function() {
+          element.code(ngModel.$viewValue || '');
+        };
+      }
+
       currentElement = element;
     };
 
     $scope.$on('$destroy', function () {
       currentElement.destroy();
-    });
-
-    $scope.$watch('code', function(newValue, oldValue) {
-      // prevent to set code twice when code are changed in summernote
-      if (newValue !== oldValue && newValue !== codeInSummernote) {
-        currentElement.code(newValue);
-      }
     });
   }])
   .directive('summernote', [function() {
@@ -67,9 +66,9 @@ angular.module('summernote', [])
       restrict: 'EA',
       transclude: true,
       replace: true,
+      require: ['summernote', '^?ngModel'],
       controller: 'SummernoteController',
       scope: {
-        code: '=',
         summernoteConfig: '=config',
         init: '&onInit',
         enter: '&onEnter',
@@ -80,8 +79,11 @@ angular.module('summernote', [])
         imageUpload: '&onImageUpload'
       },
       template: '<div class="summernote"></div>',
-      link: function(scope, element, attrs, summernoteController) {
-        summernoteController.activate(scope, element);
+      link: function(scope, element, attrs, ctrls) {
+        var summernoteController = ctrls[0],
+            ngModel = ctrls[1];
+
+        summernoteController.activate(scope, element, ngModel);
       }
     };
   }]);

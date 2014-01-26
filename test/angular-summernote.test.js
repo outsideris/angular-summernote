@@ -147,7 +147,7 @@ describe('Summernote directive', function() {
     });
   });
 
-  describe('code', function() {
+  describe('ngModel', function() {
     var scope;
 
     beforeEach(function() {
@@ -159,7 +159,7 @@ describe('Summernote directive', function() {
       // given
       var oldText = 'Hello World!', newText = 'new text';
       scope.text = oldText;
-      element = $compile('<summernote code="text"></summernote>')(scope);
+      element = $compile('<summernote ng-model="text"></summernote>')(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
       // when
@@ -173,7 +173,7 @@ describe('Summernote directive', function() {
       var oldText = 'Hello World!', newText = 'new text';
       // given
       scope.text = oldText;
-      var el = $('<summernote code="text"></summernote>').appendTo(document.body);
+      var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       element = $compile(el)(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
