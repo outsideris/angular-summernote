@@ -9,6 +9,10 @@
 angular-summernote is just a directive to bind summmernote's all features.
 You can use summernote with angular way.
 
+## Change logs
+
+See [here](https://github.com/outsideris/angular-summernote/blob/master/CHANGELOG.md).
+
 ## Demo
 
 See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/embedded/result%2Chtml%2Cjs%2Ccss/)
@@ -95,14 +99,14 @@ NOTE: `height` and `focus` attributes have high priority than options object.
 
 NOTE: custom toolbar can be set by options object.
 
-### code
+### ngModel
 
 summernote's `code`, that is HTML string in summernote.
-If you specify ngModel using `code` attribute, it will be 2-ways binding
+If you specify ngModel it will be 2-ways binding
 to HTML string in summernote. Otherwise `angular-summernote` simply ignore it.
 
 ```html
-<summernote code="text"></summernote>
+<summernote ng-model="text"></summernote>
 ```
 
 ```javascript
