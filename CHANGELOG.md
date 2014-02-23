@@ -1,3 +1,10 @@
+# 0.2.1 (2014-02-23)
+
+## Bug Fixes
+
+* ngModel is syncronized when text is changed using toolbar
+  ([#4](https://github.com/outsideris/angular-summernote/issues/4))
+
 # 0.2.0 (2014-01-26)
 
 This release adds `ngModel` support
