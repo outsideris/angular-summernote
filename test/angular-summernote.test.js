@@ -187,6 +187,40 @@ describe('Summernote directive', function() {
       el.next().remove();
       el.remove();
     });
+
+    it('text chould be synchronized when text is changed using toolbar', function() {
+      var selectText = function(element){
+        var doc = document;
+        if (doc.body.createTextRange) {
+          var range = document.body.createTextRange();
+          range.moveToElementText(element);
+          range.select();
+        } else if (window.getSelection) {
+          var selection = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(element);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+      };
+
+      var oldText = 'Hello World!';
+      // given
+      scope.text = oldText;
+      var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      expect(element.code()).to.be.equal(oldText);
+      // when
+      selectText($(element.next().find('.note-editable'))[0]);
+      $(element.next().find('.note-font').find('button').eq(0)).click();
+      scope.$digest();
+      // then
+      expect(scope.text).to.be.equal(element.code());
+
+      el.next().remove();
+      el.remove();
+    });
   });
 
   describe('callbacks', function() {

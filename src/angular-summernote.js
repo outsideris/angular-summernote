@@ -45,6 +45,16 @@ angular.module('summernote', [])
       };
 
       element.summernote(summernoteConfig);
+      var editor$ = element.next('.note-editor');
+      editor$.find('.note-toolbar').click(function() {
+        var newValue = element.code();
+        if (ngModel && ngModel.$viewValue !== newValue) {
+          ngModel.$setViewValue(newValue);
+          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) {
+            scope.$apply();
+          }
+        }
+      });
 
       if (ngModel) {
         ngModel.$render = function() {
