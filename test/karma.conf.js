@@ -17,7 +17,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // dependencies
-      '../examples/components/jquery/jquery.js',
+      '../examples/components/jquery/dist/jquery.js',
       '../examples/components/bootstrap/dist/js/bootstrap.min.js',
       '../examples/components/summernote/dist/summernote.min.js',
       '../examples/components/angular/angular.min.js',
