@@ -1,3 +1,13 @@
+# 0.2.2 (2014-05-11)
+
+* update with [summernote v0.5.1](https://github.com/HackerWins/summernote/releases/tag/v0.5.1)
+* add `onPaste` event
+
+## Bug Fixes
+
+* ngModel is synchronized when summernote's codeview mode is enabled.
+  ([#7](https://github.com/outsideris/angular-summernote/issues/7))
+
 # 0.2.1 (2014-02-23)
 
 ## Bug Fixes
@@ -15,7 +25,7 @@ This release adds `ngModel` support
 
 ## Breaking Changes
 
-* use `ngModel` attribute insted `code` attribute for 2-ways binding.
+* use `ngModel` attribute instead `code` attribute for 2-ways binding.
 
   To migrate your code change your markup like below.
     
