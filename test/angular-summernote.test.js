@@ -221,6 +221,45 @@ describe('Summernote directive', function() {
       el.next().remove();
       el.remove();
     });
+
+    it('text chould be synchronized when text is changed in codeview mode', function() {
+      var oldText = 'Hello World!', newText = 'new text';
+      // given
+      scope.text = oldText;
+      var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      expect(element.code()).to.be.equal(oldText);
+      // when
+      element.next().find('.note-view').find('button[data-event=codeview]').click();
+      scope.text = newText;
+      scope.$digest();
+      // then
+      expect(element.code()).to.be.equal(newText);
+
+      el.next().remove();
+      el.remove();
+    });
+
+    it('text chould be synchronized in use codeview when text is changed in outer scope', function() {
+      var oldText = 'Hello World!', newText = 'new text';
+      // given
+      scope.text = oldText;
+      var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      expect(element.code()).to.be.equal(oldText);
+      // when
+      element.next().find('.note-view').find('button[data-event=codeview]').click();
+      element.next().find('.note-codable').val(newText);
+      $(element.next().find('.note-codable').eq(0)).trigger('keyup');
+      scope.$digest();
+      // then
+      expect(scope.text).to.be.equal(newText);
+
+      el.next().remove();
+      el.remove();
+    });
   });
 
   describe('callbacks', function() {

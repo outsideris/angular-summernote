@@ -34,7 +34,7 @@ angular.module('summernote', [])
     }
 
     this.activate = function(scope, element, ngModel) {
-      summernoteConfig.onkeyup = function(evt) {
+      var updateNgModel = function() {
         var newValue = element.code();
         if (ngModel && ngModel.$viewValue !== newValue) {
           ngModel.$setViewValue(newValue);
@@ -42,17 +42,34 @@ angular.module('summernote', [])
             scope.$apply();
           }
         }
+      };
+
+      summernoteConfig.onkeyup = function(evt) {
+        updateNgModel();
         $scope.keyup({evt:evt});
       };
 
       element.summernote(summernoteConfig);
-      var editor$ = element.next('.note-editor');
+
+      var editor$ = element.next('.note-editor'),
+          unwatchNgModel;
       editor$.find('.note-toolbar').click(function() {
-        var newValue = element.code();
-        if (ngModel && ngModel.$viewValue !== newValue) {
-          ngModel.$setViewValue(newValue);
-          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) {
-            scope.$apply();
+        updateNgModel();
+
+        // sync ngModel in codeview mode
+        if (editor$.hasClass('codeview')) {
+          editor$.on('keyup', updateNgModel);
+          if (ngModel) {
+            unwatchNgModel = scope.$watch(function () {
+              return ngModel.$modelValue;
+            }, function(newValue, oldValue) {
+              editor$.find('.note-codable').val(newValue);
+            });
+          }
+        } else {
+          editor$.off('keyup', updateNgModel);
+          if (angular.isFunction(unwatchNgModel)) {
+            unwatchNgModel();
           }
         }
       });
