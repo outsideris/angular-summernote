@@ -25,6 +25,7 @@ angular.module('summernote', [])
     summernoteConfig.onenter = function(evt) { $scope.enter({evt:evt}); };
     summernoteConfig.onfocus = function(evt) { $scope.focus({evt:evt}); };
     summernoteConfig.onblur = function(evt) { $scope.blur({evt:evt}); };
+    summernoteConfig.onpaste = function(evt) { $scope.paste({evt:evt}); };
     summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
     if (angular.isDefined($attrs.onImageUpload)) {
       summernoteConfig.onImageUpload = function(files, editor, welEditable) {
@@ -84,6 +85,7 @@ angular.module('summernote', [])
         enter: '&onEnter',
         focus: '&onFocus',
         blur: '&onBlur',
+        paste: '&onPaste',
         keyup: '&onKeyup',
         keydown: '&onKeydown',
         imageUpload: '&onImageUpload'

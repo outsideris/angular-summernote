@@ -296,6 +296,25 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
+    it('onpaste should be invoked', function(done) {
+      scope.paste = function(e) {
+        // then
+        expect(true).to.be.true;
+        done();
+      };
+      // given
+      var el = $('<summernote on-paste="paste()"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      element.next().find('.note-editable').trigger('paste');
+
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
     it('onkeyup should be invoked', function(done) {
       scope.keyup = function(e) {
         // then

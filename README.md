@@ -125,6 +125,7 @@ function DemoController($scope) {
   $scope.enter = function() { console.log('Enter/Return key pressed'); }
   $scope.focus = function(e) { console.log('Editable area is focused'); }
   $scope.blur = function(e) { console.log('Editable area loses focus'); }
+  $scope.paste = function(e) { console.log('Called event paste'); }
   $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
   $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
   $scope.imageUpload = function(files, editor, welEditable) {
@@ -135,7 +136,8 @@ function DemoController($scope) {
 
 ```html
 <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
-            on-blur="blur(evt)" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
+            on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)"
+            on-keydown="keydown(evt)"
             on-image-upload="imageUpload(files, editor, welEditable);">
 </summernote>
 ```
