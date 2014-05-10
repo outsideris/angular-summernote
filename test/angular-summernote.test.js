@@ -252,7 +252,7 @@ describe('Summernote directive', function() {
       scope.$digest();
       // when
       var e= jQuery.Event('keypress');
-      e.keyCode = 13; // Enter key
+//      e.keyCode = 13; // Enter key
       element.next().find('.note-editable').trigger(e);
       scope.$digest();
       // tear down
