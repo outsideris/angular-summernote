@@ -1,6 +1,9 @@
 {
   "name": "angular-summernote",
   "version": "0.2.2",
+  "main": [
+        "./dist/angular-summernote.min.js"
+  ],
   "ignore": [
     "node_modules",
     "examples/",
