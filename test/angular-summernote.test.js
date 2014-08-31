@@ -241,7 +241,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('text chould be synchronized in use codeview when text is changed in outer scope', function() {
+    it('text should be synchronized in use codeview when text is changed in outer scope', function() {
       var oldText = 'Hello World!', newText = 'new text';
       // given
       scope.text = oldText;
@@ -342,11 +342,13 @@ describe('Summernote directive', function() {
         done();
       };
       // given
-      var el = $('<summernote on-paste="paste()"></summernote>').appendTo(document.body);
+      var el = $('<summernote on-paste="paste(evt)"></summernote>').appendTo(document.body);
       element = $compile(el)(scope);
       scope.$digest();
       // when
-      element.next().find('.note-editable').trigger('paste');
+      var event = jQuery.Event('paste');
+      event.originalEvent = '';
+      element.next().find('.note-editable').trigger(event);
 
       scope.$digest();
       // tear down
