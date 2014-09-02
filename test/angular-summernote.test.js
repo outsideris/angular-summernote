@@ -179,7 +179,7 @@ describe('Summernote directive', function() {
       expect(element.code()).to.be.equal(oldText);
       // when
       element.code(newText);
-      $(element.next().find('.note-editable').eq(0)).trigger('keyup');
+      $(element.next().find('.note-editable').eq(0)).trigger('input'); // to trigger onChange
       scope.$digest();
       // then
       expect(scope.text).to.be.equal(newText);
@@ -188,7 +188,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('text chould be synchronized when text is changed using toolbar', function() {
+    it('text should be synchronized when text is changed using toolbar', function() {
       var selectText = function(element){
         var doc = document;
         if (doc.body.createTextRange) {
