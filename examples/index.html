@@ -61,6 +61,7 @@
     <h4>use callbacks</h4>
     <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
                 on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
+                on-change="change(contents, $editable)"
                 on-image-upload="imageUpload(files, editor, welEditable);"></summernote>
   </div>
 
@@ -82,13 +83,14 @@
           $scope.text = "Hello World";
         })
         .controller('CallbacksCtrl', function($scope) {
-          $scope.init = function() { console.log('Summernote is launched'); }
-          $scope.enter = function() { console.log('Enter/Return key pressed'); }
-          $scope.focus = function(e) { console.log('Editable area is focused'); }
-          $scope.blur = function(e) { console.log('Editable area loses focus'); }
-          $scope.paste = function() { console.log('Called event paste'); }
-          $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
-          $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
+          $scope.init = function() { console.log('Summernote is launched'); };
+          $scope.enter = function() { console.log('Enter/Return key pressed'); };
+          $scope.focus = function(e) { console.log('Editable area is focused'); };
+          $scope.blur = function(e) { console.log('Editable area loses focus'); };
+          $scope.paste = function() { console.log('Called event paste'); };
+          $scope.change = function(contents, editable$) { console.log('contents are changed:', contents); };
+          $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); };
+          $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); };
         });
   </script>
 </body>

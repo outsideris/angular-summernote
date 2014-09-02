@@ -392,6 +392,43 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
+    it('onChange should be invoked', function(done) {
+      var selectText = function(element){
+        var doc = document;
+        if (doc.body.createTextRange) {
+          var range = document.body.createTextRange();
+          range.moveToElementText(element);
+          range.select();
+        } else if (window.getSelection) {
+          var selection = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(element);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+      };
+
+      scope.change = function(contents, editable$) {
+        // then
+        expect(/Hello World/.test(contents)).to.be.ok;
+        done();
+      };
+      // given
+      var oldText = 'Hello World!';
+      scope.text = oldText;
+      var el = $('<summernote ng-Model="text" on-change="change(contents, editable$)"></summernote>')
+                  .appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      selectText($(element.next().find('.note-editable'))[0]);
+      $(element.next().find('.note-font').find('button').eq(0)).click();
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
     // TODO: add tests for onImageUpload
   });
 
