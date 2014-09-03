@@ -85,6 +85,29 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('"airmode" option', function() {
+
+    it('should be on', function () {
+      element = $compile('<summernote airMode></summernote>')($rootScope);
+      $rootScope.$digest();
+
+      expect(element.hasClass('note-air-editor')).to.be.true;
+    });
+
+
+    it('should be on using config', function () {
+      var scope = $rootScope.$new();
+      scope.summernoteConfig = {airMode: true};
+      element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
+      $rootScope.$digest();
+
+      expect(element.hasClass('note-air-editor')).to.be.true;
+      element.next().remove();
+      element.remove();
+    });
+
+  });
+
   describe('summernoteConfig', function() {
     var scope;
 
@@ -273,11 +296,11 @@ describe('Summernote directive', function() {
 
       $(element.next().find('.note-insert').eq(1).find('button').eq(1)).click(); // image
 
-      expect($('.note-image-dialog')).to.length(1);
+      expect(element.next().find('.note-image-dialog')).to.length(1);
       var imgUrl = 'https://www.gravatar.com/avatar/748a6dc8b4eaba0fde62909e39be7987?s=200';
-      $('.note-image-dialog').find('.note-image-url').val(imgUrl);
-      $('.note-image-dialog').find('.note-image-url').trigger('keyup');
-      $('.note-image-dialog').find('.note-image-btn').click();
+      element.next().find('.note-image-dialog').find('.note-image-url').val(imgUrl);
+      element.next().find('.note-image-dialog').find('.note-image-url').trigger('keyup');
+      element.next().find('.note-image-dialog').find('.note-image-btn').click();
 
       // then
       setTimeout(function() {
