@@ -260,6 +260,36 @@ describe('Summernote directive', function() {
       el.next().remove();
       el.remove();
     });
+
+    it('should be synchronized when image inserted', function(done) {
+      // given
+      scope.text = 'Hello World';
+      var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
+      element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      var preventBubbling = function(e) { e.stopPropagation(); };
+      $('.note-toolbar').on('click', preventBubbling);
+
+      $(element.next().find('.note-insert').eq(1).find('button').eq(1)).click(); // image
+
+      expect($('.note-image-dialog')).to.length(1);
+      var imgUrl = 'https://www.gravatar.com/avatar/748a6dc8b4eaba0fde62909e39be7987?s=200';
+      $('.note-image-dialog').find('.note-image-url').val(imgUrl);
+      $('.note-image-dialog').find('.note-image-url').trigger('keyup');
+      $('.note-image-dialog').find('.note-image-btn').click();
+
+      // then
+      setTimeout(function() {
+        expect(element.code()).to.match(/gravatar/);
+
+        // tear down
+        $('.note-toolbar').off('click', preventBubbling);
+        el.next().remove();
+        el.remove();
+        done();
+      }, 100);
+    });
   });
 
   describe('callbacks', function() {

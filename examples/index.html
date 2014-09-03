@@ -91,6 +91,9 @@
           $scope.change = function(contents, editable$) { console.log('contents are changed:', contents); };
           $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); };
           $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); };
+          $scope.imageUpload = function(files, editor, $editable) {
+            console.log('image upload:', files, editor, $editable);
+          };
         });
   </script>
 </body>
