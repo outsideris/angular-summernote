@@ -15,7 +15,7 @@ See [here](https://github.com/outsideris/angular-summernote/blob/master/CHANGELO
 
 ## Demo
 
-See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/25/embedded/result%2Chtml%2Cjs%2Ccss/)
+See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/61/embedded/result%2Chtml%2Cjs%2Ccss/)
 or run example in projects(need to run `bower install` before run)
 
 ## Installation
@@ -71,6 +71,11 @@ summernote's options can be specified as attributes.
 <summernote focus></summernote>
 ```
 
+#### airmode
+```html
+<summernote airMode></summernote>
+```
+
 #### options object
 
 You can specify all options using ngModel in `config` attribute.
@@ -84,6 +89,7 @@ function DemoController($scope) {
   $scope.options = {
     height: 300,
     focus: true,
+    airMode: true,
     toolbar: [
       ['style', ['bold', 'italic', 'underline', 'clear']],
       ['fontsize', ['fontsize']],
@@ -126,6 +132,7 @@ function DemoController($scope) {
   $scope.focus = function(e) { console.log('Editable area is focused'); }
   $scope.blur = function(e) { console.log('Editable area loses focus'); }
   $scope.paste = function(e) { console.log('Called event paste'); }
+  $scope.change = function(contents, editable$) { console.log('contents are changed:', contents); };
   $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
   $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
   $scope.imageUpload = function(files, editor, welEditable) {
@@ -137,7 +144,7 @@ function DemoController($scope) {
 ```html
 <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
             on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)"
-            on-keydown="keydown(evt)"
+            on-keydown="keydown(evt)" on-change="change(contents, $editable)"
             on-image-upload="imageUpload(files, editor, welEditable);">
 </summernote>
 ```

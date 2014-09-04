@@ -1,3 +1,13 @@
+# 0.2.3 (2014-09-04)
+* update with [summernote v0.5.8](https://github.com/HackerWins/summernote/releases/tag/v0.5.8)
+* add `onChange` event
+* support airmode
+
+## Bug fixes
+
+* ngModel is synchronized with insert images
+  ([#15](https://github.com/outsideris/angular-summernote/issues/15))
+
 # 0.2.2 (2014-05-11)
 
 * update with [summernote v0.5.1](https://github.com/HackerWins/summernote/releases/tag/v0.5.1)
