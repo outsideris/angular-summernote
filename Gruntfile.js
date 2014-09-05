@@ -25,13 +25,17 @@ module.exports = function(grunt) {
     },
     watch: {},
     karma: {
-      'summernote': {
+      options: {
         configFile: './test/karma.conf.js'
       },
+      'summernote': { },
       travis: {
         singleRun: true,
-        configFile: './test/karma.conf.js',
-        browsers: ['PhantomJS']
+        browsers: ['PhantomJS'],
+        reporters: ['progress', 'coverage'],
+        preprocessors: { '../**/src/**/*.js': 'coverage' },
+        coverageReporter: { type: "lcov", dir: "../coverage/" },
+        plugins: [ 'karma-*' ]
       }
     },
     uglify: {
@@ -48,6 +52,15 @@ module.exports = function(grunt) {
           'dist/angular-summernote.min.js': ['src/angular-summernote.js']
         }
       }
+    },
+    coveralls: {
+      options: {
+        debug: true,
+        coverage_dir: 'coverage',
+        dryRun: false,
+        force: true,
+        recursive: true
+      }
     }
   });
 
@@ -59,7 +72,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', []);
   grunt.registerTask('test', ['karma:summernote']);
-  grunt.registerTask('travis', ['karma:travis']);
+  grunt.registerTask('travis', ['karma:travis', 'coveralls']);
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('deploy', ['uglify:deploy']);
 };

@@ -311,7 +311,7 @@ describe('Summernote directive', function() {
         el.next().remove();
         el.remove();
         done();
-      }, 100);
+      }, 200);
     });
   });
 
