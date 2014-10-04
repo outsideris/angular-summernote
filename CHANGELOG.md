@@ -1,3 +1,7 @@
+# 0.2.4 (2014-10-04)
+* bug fixes
+  ([#19](https://github.com/outsideris/angular-summernote/issues/19))
+
 # 0.2.3 (2014-09-04)
 * update with [summernote v0.5.8](https://github.com/HackerWins/summernote/releases/tag/v0.5.8)
 * add `onChange` event
