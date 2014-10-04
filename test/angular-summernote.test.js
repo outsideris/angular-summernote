@@ -6,7 +6,7 @@
 describe('Summernote directive', function() {
   'use strict';
 
-  var $rootScope, $compile, element;
+  var $rootScope, $compile;
 
   beforeEach(module('summernote'));
   beforeEach(inject(function(_$compile_, _$rootScope_) {
@@ -17,28 +17,28 @@ describe('Summernote directive', function() {
   describe('initialization', function() {
 
     it('has "summernote" class', function () {
-      element = $compile('<summernote></summernote>')($rootScope);
+      var element = $compile('<summernote></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect($(element.get(0)).hasClass('summernote')).to.be.true;
     });
 
     it('works with "summernote" element', function () {
-      element = $compile('<summernote></summernote>')($rootScope);
+      var element = $compile('<summernote></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect(element.next().hasClass('note-editor')).to.be.true;
     });
 
     it('works with "summernote" attribute', function () {
-      element = $compile('<div summernote></div>')($rootScope);
+      var element = $compile('<div summernote></div>')($rootScope);
       $rootScope.$digest();
 
       expect(element.next().hasClass('note-editor')).to.be.true;
     });
 
     it('works with multiple "summernote" elements', function () {
-      element = $compile('<summernote></summernote><br><summernote></summernote>')($rootScope);
+      var element = $compile('<summernote></summernote><br><summernote></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect(element.next('.note-editor')).to.length(2);
@@ -48,21 +48,21 @@ describe('Summernote directive', function() {
   describe('"height" option', function() {
 
     it('should be 0 unless it specified', function () {
-      element = $compile('<summernote></summernote>')($rootScope);
+      var element = $compile('<summernote></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').outerHeight()).to.be.equal(0);
     });
 
     it('should be 400 if it specified', function () {
-      element = $compile('<summernote height="400"></summernote>')($rootScope);
+      var element = $compile('<summernote height="400"></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').outerHeight()).to.be.equal(400);
     });
 
     it('should set with multiple directives', function () {
-      element = $compile('<summernote height="200"></summernote><br><summernote height="400"></summernote>')($rootScope);
+      var element = $compile('<summernote height="200"></summernote><br><summernote height="400"></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').eq(0).outerHeight()).to.be.equal(200);
@@ -74,7 +74,7 @@ describe('Summernote directive', function() {
   describe('"focus" option', function() {
     it('should be focused if it specified', function () {
       var el = $('<summernote focus height="400"></summernote>').appendTo(document.body);
-      element = $compile(el)($rootScope);
+      var element = $compile(el)($rootScope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').get(0)).to.be.equal(document.activeElement);
@@ -87,7 +87,7 @@ describe('Summernote directive', function() {
   describe('"airmode" option', function() {
 
     it('should be on', function () {
-      element = $compile('<summernote airMode></summernote>')($rootScope);
+      var element = $compile('<summernote airMode></summernote>')($rootScope);
       $rootScope.$digest();
 
       expect(element.hasClass('note-air-editor')).to.be.true;
@@ -97,7 +97,7 @@ describe('Summernote directive', function() {
     it('should be on using config', function () {
       var scope = $rootScope.$new();
       scope.summernoteConfig = {airMode: true};
-      element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
+      var element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
       $rootScope.$digest();
 
       expect(element.hasClass('note-air-editor')).to.be.true;
@@ -126,14 +126,14 @@ describe('Summernote directive', function() {
     });
 
     it('"height" should be 300', function() {
-      element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
+      var element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').outerHeight()).to.be.equal(300);
     });
 
     it('toolbar should be customized', function() {
-      element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
+      var element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
       $rootScope.$digest();
 
       expect(element.next().find('.note-toolbar > .note-fontsize')).to.length(1);
@@ -159,7 +159,7 @@ describe('Summernote directive', function() {
 
     it('shoud be destroyed when scope is destroyed.', function() {
       // given
-      element = $compile('<summernote></summernote>')(scope);
+      var element = $compile('<summernote></summernote>')(scope);
       scope.$digest();
       expect(element.next().hasClass('note-editor')).to.be.true;
       // when
@@ -200,7 +200,7 @@ describe('Summernote directive', function() {
       // given
       var oldText = 'Hello World!', newText = 'new text';
       scope.text = oldText;
-      element = $compile('<summernote ng-model="text"></summernote>')(scope);
+      var element = $compile('<summernote ng-model="text"></summernote>')(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
       // when
@@ -215,7 +215,7 @@ describe('Summernote directive', function() {
       // given
       scope.text = oldText;
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
       // when
@@ -249,7 +249,7 @@ describe('Summernote directive', function() {
       // given
       scope.text = oldText;
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
       // when
@@ -268,7 +268,7 @@ describe('Summernote directive', function() {
       // given
       scope.text = oldText;
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
       // when
@@ -287,7 +287,7 @@ describe('Summernote directive', function() {
       // given
       scope.text = oldText;
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       expect(element.code()).to.be.equal(oldText);
       // when
@@ -306,7 +306,7 @@ describe('Summernote directive', function() {
       // given
       scope.text = 'Hello World';
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       var preventBubbling = function(e) { e.stopPropagation(); };
@@ -346,7 +346,7 @@ describe('Summernote directive', function() {
         expect(true).to.be.true;
         done();
       };
-      element = $compile('<summernote on-init="init()"></summernote>')(scope);
+      var element = $compile('<summernote on-init="init()"></summernote>')(scope);
       scope.$digest();
     });
 
@@ -358,7 +358,7 @@ describe('Summernote directive', function() {
       };
       // given
       var el = $('<summernote on-enter="enter()"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       var e= jQuery.Event('keypress');
@@ -378,7 +378,7 @@ describe('Summernote directive', function() {
       };
       // given
       var el = $('<summernote on-focus="focus(evt)"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       element.next().find('.note-editable').focus();
@@ -396,7 +396,7 @@ describe('Summernote directive', function() {
       };
       // given
       var el = $('<summernote on-blur="blur(evt)"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       element.next().find('.note-editable').blur();
@@ -414,7 +414,7 @@ describe('Summernote directive', function() {
       };
       // given
       var el = $('<summernote on-paste="paste(evt)"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       var event = jQuery.Event('paste');
@@ -435,7 +435,7 @@ describe('Summernote directive', function() {
       };
       // given
       var el = $('<summernote on-keyup="keyup(evt)"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       element.next().find('.note-editable').keyup();
@@ -453,7 +453,7 @@ describe('Summernote directive', function() {
       };
       // given
       var el = $('<summernote on-keydown="keydown(evt)"></summernote>').appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       element.next().find('.note-editable').keydown();
@@ -489,7 +489,7 @@ describe('Summernote directive', function() {
       scope.text = oldText;
       var el = $('<summernote ng-Model="text" on-change="change(contents, editable$)"></summernote>')
                   .appendTo(document.body);
-      element = $compile(el)(scope);
+      var element = $compile(el)(scope);
       scope.$digest();
       // when
       selectText($(element.next().find('.note-editable'))[0]);
