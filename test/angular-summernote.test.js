@@ -43,7 +43,6 @@ describe('Summernote directive', function() {
 
       expect(element.next('.note-editor')).to.length(2);
     });
-
   });
 
   describe('"height" option', function() {
@@ -167,6 +166,25 @@ describe('Summernote directive', function() {
       scope.$destroy();
       // then
       expect(element.next().hasClass('note-editor')).to.be.false;
+    });
+
+    it('should clean up summernnote', function () {
+      // given
+      scope.summernoteConfig = {height: 300};
+      scope.test = [];
+      var element = $compile('<div ng-repeat="t in test"><summernote ng-model="t.c" config="summernoteConfig"></summernote></div>')(scope);
+      scope.$digest();
+
+      scope.test.push({c: ''});
+      scope.$digest();
+      expect($(element.next().children().get(0)).hasClass('summernote')).to.be.true;
+
+      // when
+      scope.test.pop();
+      scope.$digest();
+
+      // then
+      expect($(element.next().children().get(0)).hasClass('summernote')).to.be.false;
     });
   });
 
