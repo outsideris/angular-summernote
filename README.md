@@ -20,6 +20,7 @@ You can use summernote with angular way.
     - [ngModel](#ngmodel)
     - [Event Listeners](#event-listeners)
     - [i18n Support](#i18n-support)
+- [FAQ](#faq)
 - [Change Logs](#change-logs)
 
 ## Demo
@@ -168,6 +169,32 @@ And then you can specify language like:
 ```html
 <summernote lang="ko-KR"></summernote>
 ```
+
+## FAQ
+
+- __How to solve compatibility problem with AngularUI Bootstrap?__
+
+[AngularUI Bootstrap](http://angular-ui.github.io/bootstrap/) module is
+written to replace the JavaScript file for bootstrap with its own
+implementation (`ui-bootstrap-tpls.min.js`).
+
+Summernote was intended to work with Bootstrap, so the coder implemented
+features that rely on the `bootstrap.js` file being present.
+
+* If you do not include `bootstrap.js`, summernote throws exceptions.
+* If you do not include `ui-bootstrap-tpls.min.js`, your angular directives
+  for bootstrap will not work.
+* If you include both, then both JavaScript files try to listen on various
+  events, and otherwise may have incompatibility issues.
+
+If you have a drop down in the navbar, and use `data-dropdown` directive
+as bootstrap says to, then two clicks are required to open
+the drop down (menu) instead of the expected one click.
+
+The solution is to not use `data-dropdown` directive. However, the
+real solution is for summernote to be agnostic about which of
+`bootstrap.js` or `ui-bootstrap-tpls.min.js` are loaded and make the right calls.
+(see [#21](https://github.com/outsideris/angular-summernote/issues/21))
 
 ## Change Logs
 
