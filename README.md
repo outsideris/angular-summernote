@@ -10,9 +10,17 @@
 angular-summernote is just a directive to bind summmernote's all features.
 You can use summernote with angular way.
 
-## Change logs
+## Table of Contents
 
-See [here](https://github.com/outsideris/angular-summernote/blob/master/CHANGELOG.md).
+- [Demo](#demo)
+- [Installation](#Installation)
+- [How To Use](#how-to-use)
+    - [summernote directive](summernote-directive)
+    - [Options](#options)
+    - [ngModel](#ngmodel)
+    - [Event Listeners](#event-listeners)
+    - [i18n Support](#i18n-support)
+- [Change Logs](#change-logs)
 
 ## Demo
 
@@ -28,7 +36,7 @@ Project files are also available through your favourite package manager:
 
 * Bower: `bower install angular-summernote`
 
-## How to use
+## How To Use
 
 When you are done downloading all the dependencies and project files the only remaining part is to add dependencies on the ui.bootstrap AngularJS module:
 
@@ -38,7 +46,7 @@ When you've inclued all js and css files you need to inject `a` into your angula
 angular.module('myApp', ['summernote']);
 ```
 
-### `summernote` directive
+### `summernote` Directive
 
 You can use `summernote` directive where you want to use summernote editor.
 And when the scope is destroyed the directive will be destroyed.
@@ -56,7 +64,7 @@ And when the scope is destroyed the directive will be destroyed.
 
 It will be initialized automatically.
 
-### options
+### Options
 
 summernote's options can be specified as attributes.
 
@@ -122,7 +130,7 @@ function DemoController($scope) {
 }
 ```
 
-### event listeners
+### Event Listeners
 
 event listeners can be registered as attribute as you want.
 
@@ -160,3 +168,7 @@ And then you can specify language like:
 ```html
 <summernote lang="ko-KR"></summernote>
 ```
+
+## Change Logs
+
+See [here](https://github.com/outsideris/angular-summernote/blob/master/CHANGELOG.md).
