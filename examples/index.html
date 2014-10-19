@@ -64,8 +64,9 @@
     <h4>use callbacks</h4>
     <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
                 on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
-                on-change="change(contents, $editable)"
-                on-image-upload="imageUpload(files, editor, welEditable);"></summernote>
+                on-change="change(contents)"
+                on-image-upload="imageUpload(files, editor)"
+                editable="editable"></summernote>
   </div>
 
   <script>
@@ -91,11 +92,14 @@
           $scope.focus = function(e) { console.log('Editable area is focused'); };
           $scope.blur = function(e) { console.log('Editable area loses focus'); };
           $scope.paste = function() { console.log('Called event paste'); };
-          $scope.change = function(contents, editable$) { console.log('contents are changed:', contents); };
+          $scope.change = function(contents) {
+            console.log('contents are changed:', contents, $scope.editable);
+          };
           $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); };
           $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); };
-          $scope.imageUpload = function(files, editor, $editable) {
-            console.log('image upload:', files, editor, $editable);
+          $scope.imageUpload = function(files, editor) {
+            console.log('image upload:', files, editor);
+            console.log('image upload\'s editable:', $scope.editable);
           };
         });
   </script>

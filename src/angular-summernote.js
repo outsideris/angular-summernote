@@ -29,12 +29,13 @@ angular.module('summernote', [])
     summernoteConfig.onpaste = function(evt) { $scope.paste({evt:evt}); };
     summernoteConfig.onkeyup = function(evt) { $scope.keyup({evt:evt}); };
     summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
-    summernoteConfig.onChange = function(contents, editable$) {
-      $scope.change({contents:contents, editable$: editable$});
-    };
     if (angular.isDefined($attrs.onImageUpload)) {
       summernoteConfig.onImageUpload = function(files, editor, welEditable) {
-        $scope.imageUpload({files:files, editor:editor, welEditable:welEditable});
+        if (angular.isDefined($attrs.editable)) {
+          $scope.editable = welEditable;
+          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) { $scope.$apply(); }
+        }
+        $scope.imageUpload({files:files, editor:editor});
       };
     }
 
@@ -51,7 +52,11 @@ angular.module('summernote', [])
 
       summernoteConfig.onChange = function(contents, editable$) {
         updateNgModel();
-        $scope.change({contents:contents, editable$: editable$});
+        if (angular.isDefined($attrs.editable)) {
+          $scope.editable = editable$;
+          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) { $scope.$apply(); }
+        }
+        $scope.change({contents:contents});
       };
 
       element.summernote(summernoteConfig);
@@ -111,6 +116,7 @@ angular.module('summernote', [])
       controller: 'SummernoteController',
       scope: {
         summernoteConfig: '=config',
+        editable: '=',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',

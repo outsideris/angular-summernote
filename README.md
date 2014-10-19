@@ -142,11 +142,12 @@ function DemoController($scope) {
   $scope.focus = function(e) { console.log('Editable area is focused'); }
   $scope.blur = function(e) { console.log('Editable area loses focus'); }
   $scope.paste = function(e) { console.log('Called event paste'); }
-  $scope.change = function(contents, editable$) { console.log('contents are changed:', contents); };
+  $scope.change = function(contents, editable$) { console.log('contents are changed:', contents, $scope.editable); };
   $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
   $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
-  $scope.imageUpload = function(files, editor, welEditable) {
-    console.log('image upload:', files, editor, welEditable);
+  $scope.imageUpload = function(files, editor) {
+    console.log('image upload:', files, editor);
+    console.log('image upload\'s editable:', $scope.editable);
   }
 }
 ```
@@ -154,14 +155,19 @@ function DemoController($scope) {
 ```html
 <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
             on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)"
-            on-keydown="keydown(evt)" on-change="change(contents, $editable)"
-            on-image-upload="imageUpload(files, editor, welEditable);">
+            on-keydown="keydown(evt)" on-change="change(contents)"
+            on-image-upload="imageUpload(files, editor)" editable="editable">
 </summernote>
 ```
 
+If you use `$editable` object in `onImageUpload` or `onChange`
+(see [summernote's callback](http://hackerwins.github.io/summernote/features.html#callbacks)),
+you should defined `editable` attribute and use it in `$scope`.
+(Because [AngularJS 1.3.x restricts access to DOM nodes from within expressions](https://docs.angularjs.org/error/$parse/isecdom))
+
 ### i18n Support
 
-if you use i18n, you have to include language files.
+If you use i18n, you have to include language files.
 See [summernote's document](http://hackerwins.github.io/summernote/features.html#i18n)
 for more details.
 And then you can specify language like:
