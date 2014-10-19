@@ -1,3 +1,8 @@
+# 0.3.0 (2014-10-19)
+Support [AngularJS 1.3.0](http://angularjs.blogspot.kr/2014/10/angularjs-130-superluminal-nudge.html)
+* bug fixes
+  ([#20](https://github.com/outsideris/angular-summernote/issues/20))
+
 # 0.2.4 (2014-10-04)
 * bug fixes
   ([#19](https://github.com/outsideris/angular-summernote/issues/19))

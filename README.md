@@ -25,7 +25,7 @@ You can use summernote with angular way.
 
 ## Demo
 
-See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/97/embedded/result%2Chtml%2Cjs%2Ccss/)
+See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/102/embedded/result%2Chtml%2Cjs%2Ccss/)
 or run example in projects(need to run `bower install` before run)
 
 ## Installation
