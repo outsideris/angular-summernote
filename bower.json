@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "angular-1.2": "https://raw.githubusercontent.com/angular/bower-angular/v1.2.26/angular.min.js",
-    "chai": "~1.8.1",
+    "chai": "~1.10.0",
     "angular-mocks": "~1.3.0",
     "angular-mocks-1.2": "https://raw.githubusercontent.com/angular/bower-angular-mocks/v1.2.26/angular-mocks.js"
   }
