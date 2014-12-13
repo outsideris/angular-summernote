@@ -1,11 +1,11 @@
 # 0.3.0 (2014-10-19)
 Support [AngularJS 1.3.0](http://angularjs.blogspot.kr/2014/10/angularjs-130-superluminal-nudge.html)
 * bug fixes
-  ([#20](https://github.com/outsideris/angular-summernote/issues/20))
+  ([#20](https://github.com/summernote/angular-summernote/issues/20))
 
 # 0.2.4 (2014-10-04)
 * bug fixes
-  ([#19](https://github.com/outsideris/angular-summernote/issues/19))
+  ([#19](https://github.com/summernote/angular-summernote/issues/19))
 
 # 0.2.3 (2014-09-04)
 * update with [summernote v0.5.8](https://github.com/HackerWins/summernote/releases/tag/v0.5.8)
@@ -15,7 +15,7 @@ Support [AngularJS 1.3.0](http://angularjs.blogspot.kr/2014/10/angularjs-130-sup
 ## Bug fixes
 
 * ngModel is synchronized with insert images
-  ([#15](https://github.com/outsideris/angular-summernote/issues/15))
+  ([#15](https://github.com/summernote/angular-summernote/issues/15))
 
 # 0.2.2 (2014-05-11)
 
@@ -25,14 +25,14 @@ Support [AngularJS 1.3.0](http://angularjs.blogspot.kr/2014/10/angularjs-130-sup
 ## Bug Fixes
 
 * ngModel is synchronized when summernote's codeview mode is enabled.
-  ([#7](https://github.com/outsideris/angular-summernote/issues/7))
+  ([#7](https://github.com/summernote/angular-summernote/issues/7))
 
 # 0.2.1 (2014-02-23)
 
 ## Bug Fixes
 
 * ngModel is syncronized when text is changed using toolbar
-  ([#4](https://github.com/outsideris/angular-summernote/issues/4))
+  ([#4](https://github.com/summernote/angular-summernote/issues/4))
 
 # 0.2.0 (2014-01-26)
 

@@ -3,7 +3,7 @@
 ***
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-[![Build Status](https://travis-ci.org/outsideris/angular-summernote.png?branch=master)](https://travis-ci.org/outsideris/angular-summernote)
+[![Build Status](https://travis-ci.org/summernote/angular-summernote.png?branch=master)](https://travis-ci.org/summernote/angular-summernote)
 [![Dependency Status](https://gemnasium.com/outsideris/angular-summernote.png)](https://gemnasium.com/outsideris/angular-summernote)
 [![Coverage Status](https://coveralls.io/repos/outsideris/angular-summernote/badge.png)](https://coveralls.io/r/outsideris/angular-summernote)
 
@@ -200,8 +200,8 @@ the drop down (menu) instead of the expected one click.
 The solution is to not use `data-dropdown` directive. However, the
 real solution is for summernote to be agnostic about which of
 `bootstrap.js` or `ui-bootstrap-tpls.min.js` are loaded and make the right calls.
-(see [#21](https://github.com/outsideris/angular-summernote/issues/21))
+(see [#21](https://github.com/summernote/angular-summernote/issues/21))
 
 ## Change Logs
 
-See [here](https://github.com/outsideris/angular-summernote/blob/master/CHANGELOG.md).
+See [here](https://github.com/summernote/angular-summernote/blob/master/CHANGELOG.md).
