@@ -304,7 +304,8 @@ describe('Summernote directive', function() {
 
     it('should be synchronized when image inserted', function(done) {
       // given
-      scope.text = 'Hello World';
+      var text = 'Hello World'
+      scope.text = text;
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       var element = $compile(el)(scope);
       scope.$digest();
@@ -321,14 +322,17 @@ describe('Summernote directive', function() {
       element.next().find('.note-image-dialog').find('.note-image-btn').click();
 
       // then
-      setTimeout(function() {
-        expect(element.code()).to.match(/gravatar/);
+      var timer = setInterval(function() {
+        if (element.code() !== text) {
+          expect(element.code()).to.match(/gravatar/);
 
-        // tear down
-        $('.note-toolbar').off('click', preventBubbling);
-        el.next().remove();
-        el.remove();
-        done();
+          // tear down
+          $('.note-toolbar').off('click', preventBubbling);
+          el.next().remove();
+          el.remove();
+          clearInterval(timer);
+          done();
+        }
       }, 200);
     });
   });

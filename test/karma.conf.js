@@ -13,7 +13,7 @@ module.exports = function(config) {
       // dependencies
       '../examples/components/jquery/dist/jquery.js',
       '../examples/components/bootstrap/dist/js/bootstrap.min.js',
-      '../examples/components/summernote/dist/summernote.min.js',
+      '../examples/components/summernote/dist/summernote.js',
       '../examples/components/angular/angular.min.js',
 
       // application code
