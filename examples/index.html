@@ -43,8 +43,11 @@
   <h4>focus</h4>
   <summernote focus></summernote>
 
-  <h4>airmode</h4>
-  <summernote airMode></summernote>
+  <div ng-controller="AirmodeCtrl">
+    <h4>airmode</h4>
+    <summernote airMode ng-model="text">
+    </summernote>
+  </div>
 
   <div ng-controller="OptCtrl">
     <h4>options object</h4>
@@ -82,6 +85,9 @@
               ['height', ['height']]
             ]
           };
+        })
+        .controller('AirmodeCtrl', function($scope) {
+          $scope.text = "<h3>This is an Air-mode editable area.</h3>";
         })
         .controller('CodeCtrl', function($scope) {
           $scope.text = "Hello World";
