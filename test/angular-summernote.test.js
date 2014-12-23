@@ -231,14 +231,15 @@ describe('Summernote directive', function() {
 
     it('text should be synchronized when text is changed using toolbar', function() {
       var selectText = function(element){
-        var doc = document;
+        var doc = document,
+            range;
         if (doc.body.createTextRange) {
-          var range = document.body.createTextRange();
+          range = document.body.createTextRange();
           range.moveToElementText(element);
           range.select();
         } else if (window.getSelection) {
           var selection = window.getSelection();
-          var range = document.createRange();
+          range = document.createRange();
           range.selectNodeContents(element);
           selection.removeAllRanges();
           selection.addRange(range);
@@ -304,7 +305,7 @@ describe('Summernote directive', function() {
 
     it('should be synchronized when image inserted', function(done) {
       // given
-      var text = 'Hello World'
+      var text = 'Hello World';
       scope.text = text;
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       var element = $compile(el)(scope);
@@ -350,7 +351,7 @@ describe('Summernote directive', function() {
         expect(true).to.be.true;
         done();
       };
-      var element = $compile('<summernote on-init="init()"></summernote>')(scope);
+      $compile('<summernote on-init="init()"></summernote>')(scope);
       scope.$digest();
     });
 
@@ -411,7 +412,7 @@ describe('Summernote directive', function() {
     });
 
     it('onpaste should be invoked', function(done) {
-      scope.paste = function(e) {
+      scope.paste = function() {
         // then
         expect(true).to.be.true;
         done();
@@ -469,14 +470,15 @@ describe('Summernote directive', function() {
 
     it('onChange should be invoked', function(done) {
       var selectText = function(element){
-        var doc = document;
+        var doc = document,
+            range;
         if (doc.body.createTextRange) {
-          var range = document.body.createTextRange();
+          range = document.body.createTextRange();
           range.moveToElementText(element);
           range.select();
         } else if (window.getSelection) {
           var selection = window.getSelection();
-          var range = document.createRange();
+          range = document.createRange();
           range.selectNodeContents(element);
           selection.removeAllRanges();
           selection.addRange(range);

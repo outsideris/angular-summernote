@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         browsers: ['PhantomJS'],
         reporters: ['progress', 'coverage'],
         preprocessors: { '../**/src/**/*.js': 'coverage' },
-        coverageReporter: { type: "lcov", dir: "../coverage/" },
+        coverageReporter: { type: 'lcov', dir: '../coverage/' },
         plugins: [ 'karma-*' ]
       }
     },
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
     coveralls: {
       options: {
         debug: true,
-        coverage_dir: 'coverage',
+        'coverage_dir': 'coverage',
         dryRun: false,
         force: true,
         recursive: true

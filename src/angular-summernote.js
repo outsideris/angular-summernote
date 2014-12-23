@@ -64,7 +64,7 @@ angular.module('summernote', [])
           if (ngModel) {
             unwatchNgModel = scope.$watch(function () {
               return ngModel.$modelValue;
-            }, function(newValue, oldValue) {
+            }, function(newValue) {
               editor$.find('.note-codable').val(newValue);
             });
           }
