@@ -30,12 +30,8 @@ angular.module('summernote', [])
     summernoteConfig.onkeyup = function(evt) { $scope.keyup({evt:evt}); };
     summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
     if (angular.isDefined($attrs.onImageUpload)) {
-      summernoteConfig.onImageUpload = function(files, editor, welEditable) {
-        if (angular.isDefined($attrs.editable)) {
-          $scope.editable = welEditable;
-          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) { $scope.$apply(); }
-        }
-        $scope.imageUpload({files:files, editor:editor});
+      summernoteConfig.onImageUpload = function(files, editor) {
+        $scope.imageUpload({files:files, editor:editor, editable: $scope.editable});
       };
     }
 
@@ -50,13 +46,9 @@ angular.module('summernote', [])
         }
       };
 
-      summernoteConfig.onChange = function(contents, editable$) {
+      summernoteConfig.onChange = function(contents) {
         updateNgModel();
-        if (angular.isDefined($attrs.editable)) {
-          $scope.editable = editable$;
-          if ($scope.$$phase !== '$apply' || $scope.$$phase !== '$digest' ) { $scope.$apply(); }
-        }
-        $scope.change({contents:contents});
+        $scope.change({contents:contents, editable: $scope.editable});
       };
 
       element.summernote(summernoteConfig);
@@ -88,6 +80,11 @@ angular.module('summernote', [])
         ngModel.$render = function() {
           element.code(ngModel.$viewValue || '');
         };
+      }
+
+      // set editable to avoid error:isecdom since Angular v1.3
+      if (angular.isDefined($attrs.editable)) {
+        $scope.editable = editor$.find('.note-editable');
       }
 
       currentElement = element;
