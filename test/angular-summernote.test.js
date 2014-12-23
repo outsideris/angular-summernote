@@ -485,7 +485,7 @@ describe('Summernote directive', function() {
         }
       };
 
-      scope.change = function(contents, editable$) {
+      scope.change = function(contents) {
         // then
         expect(/Hello World/.test(contents)).to.be.ok;
         done();
@@ -493,7 +493,7 @@ describe('Summernote directive', function() {
       // given
       var oldText = 'Hello World!';
       scope.text = oldText;
-      var el = $('<summernote ng-Model="text" on-change="change(contents, editable$)"></summernote>')
+      var el = $('<summernote ng-Model="text" on-change="change(contents)"></summernote>')
                   .appendTo(document.body);
       var element = $compile(el)(scope);
       scope.$digest();
