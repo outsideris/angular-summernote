@@ -1,3 +1,10 @@
+# 0.3.1 (2014-12-25)
+* summernote organization maintains angular-summernote now.
+* Upgrade summernote to [v0.6.0](https://github.com/summernote/summernote/releases/tag/v0.6.0)
+* bug fixes
+    * fix Referencing a DOM node in Expression Error(see
+      [#25](https://github.com/summernote/angular-summernote/issues/25))
+
 # 0.3.0 (2014-10-19)
 Support [AngularJS 1.3.0](http://angularjs.blogspot.kr/2014/10/angularjs-130-superluminal-nudge.html)
 * bug fixes
