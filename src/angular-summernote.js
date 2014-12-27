@@ -31,7 +31,7 @@ angular.module('summernote', [])
     summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
     if (angular.isDefined($attrs.onImageUpload)) {
       summernoteConfig.onImageUpload = function(files, editor) {
-        $scope.imageUpload({files:files, editor:editor, editable: $scope.editable});
+        $scope.imageUpload({files:files, editor:editor, editable: $scope.editable,position:welEditable});
       };
     }
 
