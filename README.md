@@ -142,7 +142,9 @@ function DemoController($scope) {
   $scope.focus = function(e) { console.log('Editable area is focused'); }
   $scope.blur = function(e) { console.log('Editable area loses focus'); }
   $scope.paste = function(e) { console.log('Called event paste'); }
-  $scope.change = function(contents, editable$) { console.log('contents are changed:', contents, $scope.editable); };
+  $scope.change = function(contents) {
+    console.log('contents are changed:', contents, $scope.editable);
+  };
   $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
   $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
   $scope.imageUpload = function(files, editor) {
