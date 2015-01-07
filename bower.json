@@ -1,9 +1,11 @@
 {
   "name": "angular-summernote",
+  "description": "AngularJS directive to Summernote",
   "version": "0.3.1",
   "main": [
-        "./dist/angular-summernote.min.js"
+        "./dist/angular-summernote.js"
   ],
+  "license": "MIT",
   "ignore": [
     "node_modules",
     "examples/",
@@ -16,6 +18,18 @@
     ".editorconfig",
     ".bowerrc"
   ],
+  "keywords": ["angular.js", "summernote", "editor", "directive"],
+  "authors": [
+    {
+      "name": "\"Outsider\" Jeonghoon Byun",
+      "email": "outsideris@gmail.com",
+      "url": "http://blog.outsider.ne.kr/"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/summernote/angular-summernote.git"
+  },
   "dependencies": {
     "summernote": "~0.6.0",
     "angular": "~1.3.0"
