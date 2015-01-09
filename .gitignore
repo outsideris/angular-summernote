@@ -10,3 +10,4 @@ tmp/
 
 examples/components/
 coverage/
+dist/

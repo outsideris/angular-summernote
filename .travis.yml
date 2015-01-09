@@ -11,3 +11,15 @@ before_script:
   - npm install
   - bower install
 script: grunt travis
+deploy:
+  provider: releases
+  api_key:
+    secure: f7O3qutyiv21MsWcfaWfekyOHgsul6xhSAGFVtvNJ0O5L1q6v4xWi7Dg7+RD6mHnrfgVUqYnx1CAmnsL2bubqNZhqAWrA+yGEs4BCTCqRNyhmGans0TwUSLauDRRKWYDGBT6488oY1OoAsL7U0BomHbGqRz4lZkTbgywzjUnRd8=
+  file:
+    - "dist/angular-summernote.js"
+    - "dist/angular-summernote.min.js"
+  skip_cleanup: true
+  before_deploy: "grunt deploy"
+  on:
+    tags: true
+    repo: summernote/angular-summernote
