@@ -7,16 +7,18 @@
   ],
   "license": "MIT",
   "ignore": [
-    "node_modules",
+    "node_modules/",
     "examples/",
     "test/",
     "Gruntfile.js",
     "karma.conf.js",
     "package.json",
+    ".travis.yml",
     ".jshintrc",
     ".gitignore",
     ".editorconfig",
-    ".bowerrc"
+    ".bowerrc",
+    ".coveralls.yml"
   ],
   "keywords": ["angular.js", "summernote", "editor", "directive"],
   "authors": [
