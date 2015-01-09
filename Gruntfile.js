@@ -41,6 +41,12 @@ module.exports = function(grunt) {
         plugins: [ 'karma-*' ]
       }
     },
+    concat: {
+      deploy: {
+        src: ['src/angular-summernote.js'],
+        dest: 'dist/angular-summernote.js'
+      },
+    },
     uglify: {
       deploy: {
         options: {
@@ -77,5 +83,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['karma:summernote']);
   grunt.registerTask('travis', ['karma:travis', 'coveralls']);
   grunt.registerTask('lint', ['jshint']);
-  grunt.registerTask('deploy', ['uglify:deploy']);
+  grunt.registerTask('deploy', ['concat:deploy', 'uglify:deploy']);
 };
