@@ -101,12 +101,19 @@ function DemoController($scope) {
     focus: true,
     airMode: true,
     toolbar: [
-      ['style', ['bold', 'italic', 'underline', 'clear']],
-      ['fontsize', ['fontsize']],
-      ['color', ['color']],
-      ['para', ['ul', 'ol', 'paragraph']],
-      ['height', ['height']]
-    ]
+            ['edit',['undo','redo']],
+            ['headline', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+            ['fontface', ['fontname']],
+            ['textsize', ['fontsize']],
+            ['fontclr', ['color']],
+            ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link','picture','video','hr']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+        ]
   };
 }
 ```
