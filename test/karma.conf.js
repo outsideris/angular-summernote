@@ -14,6 +14,7 @@ module.exports = function(config) {
       '../examples/components/jquery/dist/jquery.js',
       '../examples/components/bootstrap/dist/js/bootstrap.min.js',
       '../examples/components/summernote/dist/summernote.js',
+      'lang/summernote-de-DE.js',
       '../examples/components/angular/angular.min.js',
 
       // application code

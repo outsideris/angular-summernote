@@ -142,11 +142,20 @@ describe('Summernote directive', function() {
 
     it('"lang" needs the lang file', function() {
       var fn = $compile('<summernote lang="ko-KR"></summernote>');
+
       try {
         fn($rootScope);
       } catch(e) {
         expect(e.message).to.be.exist;
       }
+    });
+
+    it.only('"lang" load the lang file correctly', function() {
+      var element = $compile('<summernote lang="de-DE"></summernote>')(scope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-toolbar > .note-help .btn-default').attr('data-original-title'))
+        .to.be.equal('Hilfe');
     });
   });
 
