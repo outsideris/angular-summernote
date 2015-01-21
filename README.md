@@ -1,4 +1,4 @@
-# angular-summernote - [AngularJS](http://angularjs.org/) directive to [Summernote](http://hackerwins.github.io/summernote/)
+# angular-summernote - [AngularJS](http://angularjs.org/) directive to [Summernote](http://summernote.org/)
 
 ***
 
@@ -30,8 +30,8 @@ or run example in projects(need to run `bower install` before run)
 
 ## Installation
 
-angular-summernote requires all include files of [Summernote](http://hackerwins.github.io/summernote/).
-see [Summernote's installation](http://hackerwins.github.io/summernote/features.html#installation).
+angular-summernote requires all include files of [Summernote](http://summernote.org/).
+see [Summernote's installation](http://summernote.org/#/features#installation).
 
 Project files are also available through your favourite package manager:
 
@@ -170,14 +170,14 @@ function DemoController($scope) {
 ```
 
 If you use `$editable` object in `onImageUpload` or `onChange`
-(see [summernote's callback](http://hackerwins.github.io/summernote/features.html#callbacks)),
+(see [summernote's callback](http://summernote.org/#/features#callbacks)),
 you should defined `editable` attribute and use it in `$scope`.
 (Because [AngularJS 1.3.x restricts access to DOM nodes from within expressions](https://docs.angularjs.org/error/$parse/isecdom))
 
 ### i18n Support
 
 If you use i18n, you have to include language files.
-See [summernote's document](http://hackerwins.github.io/summernote/features.html#i18n)
+See [summernote's document](http://summernote.org/#/features#i18n)
 for more details.
 And then you can specify language like:
 
