@@ -74,7 +74,7 @@ module.exports = function(grunt) {
     compress: {
       main: {
         options: {
-          archive: 'dist/<%= pkg.version %>.tar.gz',
+          archive: 'dist/angular-summernote.tar.gz',
           mode: 'tgz'
         },
         files: [
