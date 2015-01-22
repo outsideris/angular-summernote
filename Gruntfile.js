@@ -45,7 +45,7 @@ module.exports = function(grunt) {
       deploy: {
         src: ['src/angular-summernote.js'],
         dest: 'dist/angular-summernote.js'
-      },
+      }
     },
     uglify: {
       deploy: {
@@ -69,6 +69,17 @@ module.exports = function(grunt) {
         dryRun: false,
         force: true,
         recursive: true
+      }
+    },
+    compress: {
+      main: {
+        options: {
+          archive: 'dist/<%= pkg.version %>.tar.gz',
+          mode: 'tgz'
+        },
+        files: [
+          {src: ['dist/*.js'], dest: '', filter: 'isFile'}
+        ]
       }
     }
   });
