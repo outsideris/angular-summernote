@@ -150,7 +150,7 @@ describe('Summernote directive', function() {
       }
     });
 
-    it.only('"lang" load the lang file correctly', function() {
+    it('"lang" load the lang file correctly', function() {
       var element = $compile('<summernote lang="de-DE"></summernote>')(scope);
       $rootScope.$digest();
 
