@@ -40,7 +40,7 @@ angular.module('summernote', [])
         var newValue = element.code();
         if (ngModel && ngModel.$viewValue !== newValue) {
           ngModel.$setViewValue(newValue);
-          if (scope.$$phase !== '$apply' && scope.$$phase !== '$digest' ) {
+          if (!scope.$root.$$phase) {
             scope.$apply();
           }
         }
