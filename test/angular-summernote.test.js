@@ -6,12 +6,13 @@
 describe('Summernote directive', function() {
   'use strict';
 
-  var $rootScope, $compile;
+  var $rootScope, $compile, $timeout;
 
   beforeEach(module('summernote'));
-  beforeEach(inject(function(_$compile_, _$rootScope_) {
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
+    $timeout = _$timeout_;
   }));
 
   describe('initialization', function() {
@@ -232,6 +233,7 @@ describe('Summernote directive', function() {
       $(element.next().find('.note-editable').eq(0)).trigger('input'); // to trigger onChange
       scope.$digest();
       // then
+      $timeout.flush();
       expect(scope.text).to.be.equal(newText);
 
       el.next().remove();
@@ -267,6 +269,7 @@ describe('Summernote directive', function() {
       $(element.next().find('.note-font').find('button').eq(0)).click();
       scope.$digest();
       // then
+      $timeout.flush();
       expect(scope.text).to.be.equal(element.code());
 
       el.next().remove();
@@ -306,6 +309,7 @@ describe('Summernote directive', function() {
       $(element.next().find('.note-codable').eq(0)).trigger('keyup');
       scope.$digest();
       // then
+      $timeout.flush();
       expect(scope.text).to.be.equal(newText);
 
       el.next().remove();
@@ -333,6 +337,7 @@ describe('Summernote directive', function() {
 
       // then
       var timer = setInterval(function() {
+        $timeout.flush();
         if (element.code() !== text) {
           expect(element.code()).to.match(/gravatar/);
 
