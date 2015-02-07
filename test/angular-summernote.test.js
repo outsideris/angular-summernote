@@ -518,4 +518,23 @@ describe('Summernote directive', function() {
     // TODO: add tests for onImageUpload
   });
 
+  describe('"editable" attribute', function() {
+    var scope;
+
+    beforeEach(function() {
+      scope = $rootScope.$new();
+    });
+
+    it('should be assigned as editable object', function () {
+      var el = $('<summernote editable="myEditable"></summernote>').appendTo(document.body);
+      var element = $compile(el)($rootScope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-editable').get(0)).to.be.equal(scope.myEditable.get(0));
+
+      el.next().remove();
+      el.remove();
+    });
+  });
+
 });
