@@ -1,7 +1,7 @@
 {
   "name": "angular-summernote",
   "description": "AngularJS directive to Summernote",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": [
         "./dist/angular-summernote.js"
   ],

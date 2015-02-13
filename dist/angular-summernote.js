@@ -6,7 +6,7 @@
 /* global angular */
 angular.module('summernote', [])
 
-  .controller('SummernoteController', ['$scope', '$attrs', function($scope, $attrs) {
+  .controller('SummernoteController', ['$scope', '$attrs', '$timeout', function($scope, $attrs, $timeout) {
     'use strict';
 
     var currentElement,
@@ -39,10 +39,9 @@ angular.module('summernote', [])
       var updateNgModel = function() {
         var newValue = element.code();
         if (ngModel && ngModel.$viewValue !== newValue) {
-          ngModel.$setViewValue(newValue);
-          if (scope.$$phase !== '$apply' && scope.$$phase !== '$digest' ) {
-            scope.$apply();
-          }
+          $timeout(function() {
+            ngModel.$setViewValue(newValue);
+          }, 0);
         }
       };
 

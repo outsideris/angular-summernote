@@ -1,3 +1,8 @@
+# 0.3.2 (2015-02-13)
+* bug fixes
+    * fix to avoid inprog error with outer scope
+      [#34](https://github.com/summernote/angular-summernote/pull/34))
+
 # 0.3.1 (2014-12-25)
 * summernote organization maintains angular-summernote now.
 * Upgrade summernote to [v0.6.0](https://github.com/summernote/summernote/releases/tag/v0.6.0)
