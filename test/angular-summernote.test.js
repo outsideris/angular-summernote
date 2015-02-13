@@ -531,9 +531,9 @@ describe('Summernote directive', function() {
     });
 
     it('should be assigned as editable object', function () {
-      var el = $('<summernote editable="myEditable"></summernote>').appendTo(document.body);
-      var element = $compile(el)($rootScope);
-      $rootScope.$digest();
+      var el = $('<summernote editable="myEditable"></summernote>');
+      var element = $compile(el)(scope);
+      scope.$digest();
 
       expect(element.next().find('.note-editable').get(0)).to.be.equal(scope.myEditable.get(0));
 
