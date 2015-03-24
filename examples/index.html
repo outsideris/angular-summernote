@@ -70,7 +70,7 @@
   <div ng-controller="CallbacksCtrl">
     <h4>use callbacks</h4>
     <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
-                on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
+                on-blur="blur(evt)" on-paste="paste(evt)" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
                 on-change="change(contents)"
                 on-image-upload="imageUpload(files, editor)"
                 editable="editable"></summernote>
@@ -101,7 +101,9 @@
           $scope.enter = function() { console.log('Enter/Return key pressed'); };
           $scope.focus = function(e) { console.log('Editable area is focused'); };
           $scope.blur = function(e) { console.log('Editable area loses focus'); };
-          $scope.paste = function() { console.log('Called event paste'); };
+          $scope.paste = function(e) {
+            console.log('Called event paste: ' +  e.originalEvent.clipboardData.getData('text'));
+          };
           $scope.change = function(contents) {
             console.log('contents are changed:', contents, $scope.editable);
           };
