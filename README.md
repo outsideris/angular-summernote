@@ -138,6 +138,10 @@ function DemoController($scope) {
 }
 ```
 
+And you can use [ngModelOptions](https://docs.angularjs.org/api/ng/directive/ngModelOptions)
+with Angular v1.3+. So, you can update ngModel when blur event emitted or with a debouncing delay
+if you want.
+
 ### Event Listeners
 
 event listeners can be registered as attribute as you want.

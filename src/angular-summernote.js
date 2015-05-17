@@ -25,7 +25,6 @@ angular.module('summernote', [])
     summernoteConfig.oninit = $scope.init;
     summernoteConfig.onenter = function(evt) { $scope.enter({evt:evt}); };
     summernoteConfig.onfocus = function(evt) { $scope.focus({evt:evt}); };
-    summernoteConfig.onblur = function(evt) { $scope.blur({evt:evt}); };
     summernoteConfig.onpaste = function(evt) { $scope.paste({evt:evt}); };
     summernoteConfig.onkeyup = function(evt) { $scope.keyup({evt:evt}); };
     summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
@@ -48,6 +47,10 @@ angular.module('summernote', [])
       summernoteConfig.onChange = function(contents) {
         updateNgModel();
         $scope.change({contents:contents, editable: $scope.editable});
+      };
+      summernoteConfig.onblur = function(evt) {
+        element.blur();
+        $scope.blur({evt:evt});
       };
 
       element.summernote(summernoteConfig);
