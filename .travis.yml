@@ -9,3 +9,13 @@ before_script:
   - npm install
   - bower install
 script: grunt travis
+before_deploy:
+  - grunt deploy
+deploy:
+  provider: npm
+  email: outsideris@gmail.com
+  api_key:
+    secure: CLoou0mPPDRnjcQi8bYM79lYDH/EgbJxihyZeFhcHSCqKrSi1x1ECx2gz9pSeTZminy94a3+gaWOIGYR0WtVjK6pfqua16gidmS0lkao8uqoaHBnAEhUO9M/kC3K8RsFmIBHkEFgBn13Cdi/dvYBfEdfzcWdyTNMMfipXXDBk1I=
+  on:
+    tags: true
+    repo: summernote/angular-summernote

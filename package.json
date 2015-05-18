@@ -1,12 +1,19 @@
 {
   "name": "angular-summernote",
+  "description": "AngularJS directive to Summernote",
   "version": "0.3.2",
   "author": {
     "name": "\"Outsider\" Jeonghoon Byun",
     "email": "outsideris@gmail.com",
     "url": "http://blog.outsider.ne.kr/"
   },
-  "private": true,
+  "keywords": [
+    "editor",
+    "bootstrap",
+    "WYSIWYG",
+    "angular",
+    "angular.js"
+  ],
   "licenses": [
     {
       "type": "MIT",
