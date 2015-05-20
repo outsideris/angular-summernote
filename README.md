@@ -158,8 +158,8 @@ function DemoController($scope) {
   };
   $scope.keyup = function(e) { console.log('Key is released:', e.keyCode); }
   $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); }
-  $scope.imageUpload = function(files, editor) {
-    console.log('image upload:', files, editor);
+  $scope.imageUpload = function(files) {
+    console.log('image upload:', files);
     console.log('image upload\'s editable:', $scope.editable);
   }
 }
@@ -169,7 +169,7 @@ function DemoController($scope) {
 <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
             on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)"
             on-keydown="keydown(evt)" on-change="change(contents)"
-            on-image-upload="imageUpload(files, editor)" editable="editable">
+            on-image-upload="imageUpload(files)" editable="editable">
 </summernote>
 ```
 

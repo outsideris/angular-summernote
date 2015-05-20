@@ -360,7 +360,7 @@ describe('Summernote directive', function() {
       scope.summernoteConfig = {focus: false};
     });
 
-    it('oninit should be invoked', function(done) {
+    it('onInit should be invoked', function(done) {
       scope.init = function() {
         expect(true).to.be.true;
         done();
@@ -369,7 +369,7 @@ describe('Summernote directive', function() {
       scope.$digest();
     });
 
-    it('onenter should be invoked', function(done) {
+    it('onEnter should be invoked', function(done) {
       scope.enter = function() {
         // then
         expect(true).to.be.true;
@@ -380,8 +380,8 @@ describe('Summernote directive', function() {
       var element = $compile(el)(scope);
       scope.$digest();
       // when
-      var e= jQuery.Event('keypress');
-//      e.keyCode = 13; // Enter key
+      var e= jQuery.Event('keydown');
+      e.keyCode = 13; // Enter key
       element.next().find('.note-editable').trigger(e);
       scope.$digest();
       // tear down
@@ -389,7 +389,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('onfocus should be invoked', function(done) {
+    it('onFocus should be invoked', function(done) {
       scope.focus = function(e) {
         // then
         expect(e).to.be.exist;
@@ -407,7 +407,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('onblur should be invoked', function(done) {
+    it('onBlur should be invoked', function(done) {
       scope.blur = function(e) {
         // then
         expect(e).to.be.exist;
@@ -425,7 +425,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('onpaste should be invoked', function(done) {
+    it('onPaste should be invoked', function(done) {
       scope.paste = function() {
         // then
         expect(true).to.be.true;
@@ -446,7 +446,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('onkeyup should be invoked', function(done) {
+    it('onKeyup should be invoked', function(done) {
       scope.keyup = function(e) {
         // then
         expect(e).to.be.exist;
@@ -464,7 +464,7 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
-    it('onkeydown should be invoked', function(done) {
+    it('onKeydown should be invoked', function(done) {
       scope.keydown = function(e) {
         // then
         expect(e).to.be.exist;
