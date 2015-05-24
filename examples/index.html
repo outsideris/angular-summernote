@@ -73,7 +73,7 @@
                 on-blur="blur(evt)" on-paste="paste(evt)" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
                 on-change="change(contents)"
                 on-image-upload="imageUpload(files)"
-                editable="editable"></summernote>
+                editable="editable" editor="editor"></summernote>
   </div>
 
   <script>
@@ -110,6 +110,7 @@
           $scope.keydown = function(e) { console.log('Key is pressed:', e.keyCode); };
           $scope.imageUpload = function(files) {
             console.log('image upload:', files);
+            console.log('image upload\'s editor:', $scope.editor);
             console.log('image upload\'s editable:', $scope.editable);
           };
         });

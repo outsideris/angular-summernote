@@ -88,6 +88,9 @@ angular.module('summernote', [])
       if (angular.isDefined($attrs.editable)) {
         $scope.editable = editor$.find('.note-editable');
       }
+      if (angular.isDefined($attrs.editor)) {
+        $scope.editor = element;
+      }
 
       currentElement = element;
       // use jquery Event binding instead $on('$destroy') to preserve options data of DOM
@@ -116,6 +119,7 @@ angular.module('summernote', [])
       scope: {
         summernoteConfig: '=config',
         editable: '=',
+        editor: '=',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',

@@ -169,14 +169,19 @@ function DemoController($scope) {
 <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
             on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)"
             on-keydown="keydown(evt)" on-change="change(contents)"
-            on-image-upload="imageUpload(files)" editable="editable">
+            on-image-upload="imageUpload(files)" editable="editable" editor="editor">
 </summernote>
 ```
 
 If you use `$editable` object in `onImageUpload` or `onChange`
 (see [summernote's callback](http://summernote.org/#/features#callbacks)),
-you should defined `editable` attribute and use it in `$scope`.
+you should define `editable` attribute and use it in `$scope`.
 (Because [AngularJS 1.3.x restricts access to DOM nodes from within expressions](https://docs.angularjs.org/error/$parse/isecdom))
+
+Since summernote v0.6.4, APIs have been changed. So, If you use the verions,
+`onImageUpload` is not return `editor` object anymore. If you want to user
+`editor` object, you should define `editor` attribute and use it in `$scope`.
+Futhermore, you can use summernote's APIs via the `editor` object.
 
 ### i18n Support
 

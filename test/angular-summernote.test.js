@@ -542,4 +542,23 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('"editor" attribute', function() {
+    var scope;
+
+    beforeEach(function() {
+      scope = $rootScope.$new();
+    });
+
+    it('should be assigned as editor object', function () {
+      var el = $('<summernote editor="snote"></summernote>');
+      var element = $compile(el)(scope);
+      scope.$digest();
+
+      expect(element.get(0)).to.be.equal(scope.snote.get(0));
+
+      el.next().remove();
+      el.remove();
+    });
+  });
+
 });
