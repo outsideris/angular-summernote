@@ -169,6 +169,7 @@ function DemoController($scope) {
 <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
             on-blur="blur(evt)" on-paste="paste()" on-keyup="keyup(evt)"
             on-keydown="keydown(evt)" on-change="change(contents)"
+            on-toolbar-click="toolbarClick(evt)"
             on-image-upload="imageUpload(files)" editable="editable" editor="editor">
 </summernote>
 ```

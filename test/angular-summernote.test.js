@@ -520,6 +520,24 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
+    it('onToolbarClick should be invoked', function(done) {
+      scope.click = function(e) {
+        // then
+        expect(e).to.be.exist;
+        done();
+      };
+      // given
+      var el = $('<summernote on-toolbar-click="click(evt)"></summernote>').appendTo(document.body);
+      var element = $compile(el)(scope);
+      scope.$digest();
+      // when
+      element.next().find('.note-toolbar').click();
+      scope.$digest();
+      // tear down
+      el.next().remove();
+      el.remove();
+    });
+
     // TODO: add tests for onImageUpload
   });
 
