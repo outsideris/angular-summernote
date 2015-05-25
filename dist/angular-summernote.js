@@ -22,16 +22,15 @@ angular.module('summernote', [])
       summernoteConfig.lang = $attrs.lang;
     }
 
-    summernoteConfig.oninit = $scope.init;
-    summernoteConfig.onenter = function(evt) { $scope.enter({evt:evt}); };
-    summernoteConfig.onfocus = function(evt) { $scope.focus({evt:evt}); };
-    summernoteConfig.onblur = function(evt) { $scope.blur({evt:evt}); };
-    summernoteConfig.onpaste = function(evt) { $scope.paste({evt:evt}); };
-    summernoteConfig.onkeyup = function(evt) { $scope.keyup({evt:evt}); };
-    summernoteConfig.onkeydown = function(evt) { $scope.keydown({evt:evt}); };
+    summernoteConfig.onInit = $scope.init;
+    summernoteConfig.onEnter = function(evt) { $scope.enter({evt:evt}); };
+    summernoteConfig.onFocus = function(evt) { $scope.focus({evt:evt}); };
+    summernoteConfig.onPaste = function(evt) { $scope.paste({evt:evt}); };
+    summernoteConfig.onKeyup = function(evt) { $scope.keyup({evt:evt}); };
+    summernoteConfig.onKeydown = function(evt) { $scope.keydown({evt:evt}); };
     if (angular.isDefined($attrs.onImageUpload)) {
-      summernoteConfig.onImageUpload = function(files, editor) {
-        $scope.imageUpload({files:files, editor:editor, editable: $scope.editable});
+      summernoteConfig.onImageUpload = function(files) {
+        $scope.imageUpload({files:files, editable: $scope.editable});
       };
     }
 
@@ -49,6 +48,15 @@ angular.module('summernote', [])
         updateNgModel();
         $scope.change({contents:contents, editable: $scope.editable});
       };
+      summernoteConfig.onBlur = function(evt) {
+        element.blur();
+        $scope.blur({evt:evt});
+      };
+      if (angular.isDefined($attrs.onToolbarClick)) {
+        element.on('summernote.toolbar.click', function (evt) {
+          $scope.toolbarClick({evt: evt});
+        });
+      }
 
       element.summernote(summernoteConfig);
 
@@ -85,6 +93,9 @@ angular.module('summernote', [])
       if (angular.isDefined($attrs.editable)) {
         $scope.editable = editor$.find('.note-editable');
       }
+      if (angular.isDefined($attrs.editor)) {
+        $scope.editor = element;
+      }
 
       currentElement = element;
       // use jquery Event binding instead $on('$destroy') to preserve options data of DOM
@@ -113,6 +124,7 @@ angular.module('summernote', [])
       scope: {
         summernoteConfig: '=config',
         editable: '=',
+        editor: '=',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',
@@ -121,6 +133,7 @@ angular.module('summernote', [])
         keyup: '&onKeyup',
         keydown: '&onKeydown',
         change: '&onChange',
+        toolbarClick: '&onToolbarClick',
         imageUpload: '&onImageUpload'
       },
       template: '<div class="summernote"></div>',

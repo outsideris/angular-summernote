@@ -1,3 +1,13 @@
+# 0.4.0 (2015-05-25)
+## Breaking changes
+* Support Summernote v0.6.4+. It's not compatible with the version under v0.6.4.
+  If you use summernote v0.6.3-, use angular-summernote v0.3.2.
+* Now, editor object exposed via `editor` attribute.
+## Features
+* Support `ngModelOptions`
+* Support `onToolbarClick` event
+* Publish in npm registry
+
 # 0.3.2 (2015-02-13)
 * bug fixes
     * fix to avoid inprog error with outer scope
