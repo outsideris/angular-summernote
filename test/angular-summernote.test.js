@@ -337,7 +337,6 @@ describe('Summernote directive', function() {
 
       // then
       var timer = setInterval(function() {
-        $timeout.flush();
         if (element.code() !== text) {
           expect(element.code()).to.match(/gravatar/);
 
