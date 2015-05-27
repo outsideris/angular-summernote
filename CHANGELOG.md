@@ -3,6 +3,7 @@
 * Support Summernote v0.6.4+. It's not compatible with the version under v0.6.4.
   If you use summernote v0.6.3-, use angular-summernote v0.3.2.
 * Now, editor object exposed via `editor` attribute.
+
 ## Features
 * Support `ngModelOptions`
 * Support `onToolbarClick` event

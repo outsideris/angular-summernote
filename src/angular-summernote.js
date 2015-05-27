@@ -49,7 +49,7 @@ angular.module('summernote', [])
         $scope.change({contents:contents, editable: $scope.editable});
       };
       summernoteConfig.onBlur = function(evt) {
-        element.blur();
+        (!summernoteConfig.airMode) && element.blur();
         $scope.blur({evt:evt});
       };
       if (angular.isDefined($attrs.onToolbarClick)) {
