@@ -5,7 +5,7 @@ var sharedConfig = require('./karma-shared.conf');
 
 module.exports = function(config) {
   'use strict';
-  sharedConfig(config, {testName: 'angular-summernote: angular-1.4.x'});
+  sharedConfig(config, {testName: 'angular-summernote: angular-1.3.x'});
 
   config.set({
     // list of files / patterns to load in the browser
@@ -13,15 +13,14 @@ module.exports = function(config) {
       // dependencies
       '../examples/components/jquery/dist/jquery.js',
       '../examples/components/bootstrap/dist/js/bootstrap.min.js',
-      '../examples/components/summernote/dist/summernote.js',
-      'lang/summernote-de-DE.js',
-      '../examples/components/angular/angular.min.js',
+      '../examples/components/summernote/dist/summernote.min.js',
+      '../examples/components/angular-1.3/index.js',
 
       // application code
       '../src/**/*.js',
 
       // test dependencies
-      '../examples/components/angular-mocks/angular-mocks.js',
+      '../examples/components/angular-mocks-1.3/index.js',
       '../examples/components/chai/chai.js',
       'mocha.conf.js',
       'chai.conf.js',
