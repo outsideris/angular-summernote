@@ -34,6 +34,9 @@ module.exports = function(grunt) {
       'summernote-angular-12': {
         configFile: './test/karma-angular-1-2-x.conf.js'
       },
+      'summernote-angular-13': {
+        configFile: './test/karma-angular-1-3-x.conf.js'
+      },
       travis: {
         singleRun: true,
         browsers: ['PhantomJS'],
