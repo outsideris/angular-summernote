@@ -327,7 +327,7 @@ describe('Summernote directive', function() {
       var preventBubbling = function(e) { e.stopPropagation(); };
       $('.note-toolbar').on('click', preventBubbling);
 
-      $(element.next().find('.note-insert').eq(1).find('button').eq(1)).click(); // image
+      $(element.next().find('.note-insert').eq(0).find('button').eq(1)).click(); // image
 
       expect(element.next().find('.note-image-dialog')).to.length(1);
       var imgUrl = 'https://www.gravatar.com/avatar/748a6dc8b4eaba0fde62909e39be7987?s=200';
@@ -399,7 +399,8 @@ describe('Summernote directive', function() {
       var element = $compile(el)(scope);
       scope.$digest();
       // when
-      element.next().find('.note-editable').focus();
+      // TODO: check the reason why it need triggering focus twice
+      element.next().find('.note-editable').focus().focus();
       scope.$digest();
       // tear down
       el.next().remove();
