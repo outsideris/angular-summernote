@@ -1,3 +1,10 @@
+# 0.4.1 (2015-08-17)
+* bug fixes
+    * fix "Maximum call stack size exceeded" error in airmode
+      [#62](https://github.com/summernote/angular-summernote/issues/62)
+    * clean ngModel when content is empty
+      [#53](https://github.com/summernote/angular-summernote/issues/53)
+
 # 0.4.0 (2015-05-25)
 ## Breaking changes
 * Support Summernote v0.6.4+. It's not compatible with the version under v0.6.4.

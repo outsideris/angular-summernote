@@ -37,6 +37,7 @@ angular.module('summernote', [])
     this.activate = function(scope, element, ngModel) {
       var updateNgModel = function() {
         var newValue = element.code();
+        if (element.summernote('isEmpty')) { newValue = ''; }
         if (ngModel && ngModel.$viewValue !== newValue) {
           $timeout(function() {
             ngModel.$setViewValue(newValue);
@@ -45,11 +46,12 @@ angular.module('summernote', [])
       };
 
       summernoteConfig.onChange = function(contents) {
+        if (element.summernote('isEmpty')) { contents = ''; }
         updateNgModel();
         $scope.change({contents:contents, editable: $scope.editable});
       };
       summernoteConfig.onBlur = function(evt) {
-        element.blur();
+        (!summernoteConfig.airMode) && element.blur();
         $scope.blur({evt:evt});
       };
       if (angular.isDefined($attrs.onToolbarClick)) {
