@@ -5,7 +5,7 @@ var sharedConfig = require('./karma-shared.conf');
 
 module.exports = function(config) {
   'use strict';
-  sharedConfig(config, {testName: 'angular-summernote: angular-1.4.x'});
+  sharedConfig(config, {testName: 'angular-summernote: angular-1.3.x'});
 
   config.set({
     // list of files / patterns to load in the browser
