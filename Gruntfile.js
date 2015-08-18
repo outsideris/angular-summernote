@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           mangle: false,
           banner: '/*\n' +
                   '  angular-summernote v<%=pkg.version%>\n' +
-                  '  Copyright 2014 Jeonghoon Byun\n' +
+                  '  Copyright 2015 Jeonghoon Byun\n' +
                   '  License: MIT\n' +
                   ' */\n'
         },

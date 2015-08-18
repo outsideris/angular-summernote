@@ -1,3 +1,6 @@
+# 0.5.0 (2015-08-19)
+* Support [AngularJS 1.4.x](http://angularjs.blogspot.kr/2015/05/angular-140-jaracimrman-existence.html)
+
 # 0.4.2 (2015-08-19)
 * bug fixes
     * fix "Maximum call stack size exceeded" error in airmode
