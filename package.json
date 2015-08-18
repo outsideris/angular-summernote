@@ -1,7 +1,7 @@
 {
   "name": "angular-summernote",
   "description": "AngularJS directive to Summernote",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": {
     "name": "\"Outsider\" Jeonghoon Byun",
     "email": "outsideris@gmail.com",

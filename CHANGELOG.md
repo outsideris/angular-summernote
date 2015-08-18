@@ -1,4 +1,4 @@
-# 0.4.1 (2015-08-17)
+# 0.4.2 (2015-08-19)
 * bug fixes
     * fix "Maximum call stack size exceeded" error in airmode
       [#62](https://github.com/summernote/angular-summernote/issues/62)
