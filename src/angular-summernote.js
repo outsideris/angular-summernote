@@ -138,7 +138,7 @@ angular.module('summernote', [])
         toolbarClick: '&onToolbarClick',
         imageUpload: '&onImageUpload'
       },
-      template: '<div class="summernote"></div>',
+      template: '<div class="summernote" ng-transclude></div>',
       link: function(scope, element, attrs, ctrls) {
         var summernoteController = ctrls[0],
             ngModel = ctrls[1];
