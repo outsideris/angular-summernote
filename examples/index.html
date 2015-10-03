@@ -22,6 +22,19 @@
     body {
       margin: 10px 20px;
     }
+
+    h2, h4, h5, h6 {
+      background-color: #eee;
+      padding: 10px;
+    }
+
+    h4 {
+      margin-left: 20px;
+    }
+
+    .example {
+      margin-left: 40px;
+    }
   </style>
 </head>
 <body>
@@ -30,51 +43,70 @@
 
   <h2>summernote directive</h2>
 
-  <h4>use element</h4>
-  <summernote></summernote>
+    <h4>use element</h4>
+    <div class="example">
+      <summernote></summernote>
+    </div>
 
-  <h4>use attribute</h4>
-  <div summernote></div>
+    <h4>use attribute</h4>
+    <div class="example">
+      <div summernote></div>
+    </div>
 
   <h2>summernote options</h2>
 
-  <h4>height</h4>
-  <summernote height="300"></summernote>
+    <h4>height</h4>
+    <div class="example">
+      <summernote height="300"></summernote>
+    </div>
 
-  <h4>focus</h4>
-  <summernote focus></summernote>
+    <h4>focus</h4>
+    <div class="example">
+      <summernote focus></summernote>
+    </div>
 
-  <h4>lang</h4>
-  <summernote lang="de-DE"></summernote>
+    <h4>lang</h4>
+    <div class="example">
+      <summernote lang="de-DE"></summernote>
+    </div>
 
-  <div ng-controller="AirmodeCtrl">
-    <h4>airmode</h4>
-    <summernote airMode ng-model="text">
-    </summernote>
-  </div>
+    <div ng-controller="AirmodeCtrl">
+      <h4>airmode</h4>
+      <div class="example">
+        <summernote airMode ng-model="text"></summernote>
+      </div>
+    </div>
 
-  <div ng-controller="OptCtrl">
-    <h4>options object</h4>
-    <summernote config="options"></summernote>
-  </div>
+    <div ng-controller="OptCtrl">
+      <h4>options object</h4>
+      <div class="example">
+        <summernote config="options"></summernote>
+      </div>
+    </div>
+
+  <h2>advanced features</h2>
 
   <div ng-controller="CodeCtrl">
-    <h4>code : HTML string in summernote</h4>
-    <summernote ng-model="text"></summernote>
+    <h4>use ngModel to synchronize the value</h4>
+    <div class="example">
+      <summernote ng-model="text"></summernote>
 
-    <br>
-    <textarea type="text" ng-model="text" style="width:100%;"></textarea></br>
-    text : {{text}}
+      <br>
+      <textarea type="text" ng-model="text" style="width:100%;"></textarea></br>
+      text : {{text}}
+    </div>
   </div>
 
   <div ng-controller="CallbacksCtrl">
     <h4>use callbacks</h4>
-    <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
-                on-blur="blur(evt)" on-paste="paste(evt)" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
-                on-change="change(contents)"
-                on-image-upload="imageUpload(files)"
-                on-toolbar-click="toolbarClick(evt)"
-                editable="editable" editor="editor"></summernote>
+    <div class="example">
+      <summernote on-init="init()" on-enter="enter()" on-focus="focus(evt)"
+                  on-blur="blur(evt)" on-paste="paste(evt)" on-keyup="keyup(evt)" on-keydown="keydown(evt)"
+                  on-change="change(contents)"
+                  on-image-upload="imageUpload(files)"
+                  on-toolbar-click="toolbarClick(evt)"
+                  editable="editable" editor="editor"></summernote>
+    </div>
   </div>
 
   <script>
