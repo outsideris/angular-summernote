@@ -579,4 +579,26 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('transclude', function() {
+    it('set initialize text with inner text', function() {
+      // given
+      var scope = $rootScope.$new();
+      var html = '<span style="font-weight: bold;">init text</span>';
+      // when
+      var element = $compile('<summernote>'+html+'</summernote>')(scope);
+      scope.$digest();
+      // then
+      expect(element.code()).to.be.equal(html);
+    });
+
+    it('set blank html if no text in summernote directive', function() {
+      // given
+      var scope = $rootScope.$new();
+      // when
+      var element = $compile('<summernote></summernote>')(scope);
+      scope.$digest();
+      // then
+      expect(element.code()).to.be.equal('<p><br></p>');
+    });
+  });
 });

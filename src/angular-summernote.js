@@ -119,7 +119,7 @@ angular.module('summernote', [])
 
     return {
       restrict: 'EA',
-      transclude: true,
+      transclude: 'element',
       replace: true,
       require: ['summernote', '^?ngModel'],
       controller: 'SummernoteController',
@@ -138,10 +138,15 @@ angular.module('summernote', [])
         toolbarClick: '&onToolbarClick',
         imageUpload: '&onImageUpload'
       },
-      template: '<div class="summernote" ng-transclude></div>',
-      link: function(scope, element, attrs, ctrls) {
+      template: '<div class="summernote"></div>',
+      link: function(scope, element, attrs, ctrls, transclude) {
         var summernoteController = ctrls[0],
             ngModel = ctrls[1];
+
+        transclude(scope, function(clone, scope) {
+          // to prevent binding to angular scope (It require `tranclude: 'element'`)
+          element.append(clone.html());
+        });
 
         summernoteController.activate(scope, element, ngModel);
       }
