@@ -1,3 +1,7 @@
+# 0.5.1 (2015-10-05)
+* Support initial text from inner markup in directive
+  [#77](https://github.com/summernote/angular-summernote/issues/77)
+
 # 0.5.0 (2015-08-19)
 * Support [AngularJS 1.4.x](http://angularjs.blogspot.kr/2015/05/angular-140-jaracimrman-existence.html)
 
