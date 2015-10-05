@@ -1,21 +1,21 @@
 language: node_js
 sudo: false
 node_js:
-  - '4.1'
+- '4.1'
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - npm install --quiet -g grunt-cli karma bower
-  - npm install
-  - bower install
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- npm install --quiet -g grunt-cli karma bower
+- npm install
+- bower install
 script: grunt travis
 before_deploy:
-  - grunt deploy
+- grunt deploy
 deploy:
   provider: npm
   email: outsideris@gmail.com
   api_key:
-    secure: CLoou0mPPDRnjcQi8bYM79lYDH/EgbJxihyZeFhcHSCqKrSi1x1ECx2gz9pSeTZminy94a3+gaWOIGYR0WtVjK6pfqua16gidmS0lkao8uqoaHBnAEhUO9M/kC3K8RsFmIBHkEFgBn13Cdi/dvYBfEdfzcWdyTNMMfipXXDBk1I=
+    secure: KuxrTSTdHMJl4Ma987odsgY4YRe/4u1eLsjCcnUvvBR6Jcmw3lWwZ0NmcGMyb5vYiYMrpa0+BfjmKx+EaUSrLGZGRZjgi1fI19sA6oFncHFHatcCzIfsuxFKOJeQpyNfm2LGVGLe6Tgs/AN/eKqy8cRowewgyi2JAYYbPlCLyEs=
   on:
     tags: true
     repo: summernote/angular-summernote
