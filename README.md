@@ -65,6 +65,12 @@ And when the scope is destroyed the directive will be destroyed.
 
 It will be initialized automatically.
 
+If you put markups in the directive, the markups used as initial text.
+
+```html
+<summernote><span style="font-weight: bold;">This is initial text.</span></summernote>
+```
+
 ### Options
 
 summernote's options can be specified as attributes.
