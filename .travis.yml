@@ -8,9 +8,9 @@ before_script:
 - npm install --quiet -g grunt-cli karma bower
 - npm install
 - bower install
-script: grunt travis
+script: gulp travis
 before_deploy:
-- grunt deploy
+- gulp build
 deploy:
   provider: npm
   email: outsideris@gmail.com
