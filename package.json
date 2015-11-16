@@ -30,6 +30,7 @@
     "gulp-coveralls": "^0.1.4",
     "gulp-header": "^1.7.1",
     "gulp-jshint": "^1.11.2",
+    "gulp-nuget-pack": "0.0.6",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.2",
     "jshint-stylish": "^2.0.1",

@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     header = require("gulp-header"),
     Server = require('karma').Server,
     coveralls = require('gulp-coveralls'),
+    nugetpack = require('gulp-nuget-pack'),
     pkg = require('./package.json');
 
 var banner = '/*  angular-summernote v<%=pkg.version%> | (c) 2014, 2015 JeongHoon Byun | MIT license */\n';
@@ -73,4 +74,18 @@ gulp.task('travis', function(done) {
     coverageReporter: { type: 'lcov', dir: '../coverage/' },
     plugins: [ 'karma-*' ]
   }, coveralls).start();
+});
+
+gulp.task('nuget-pack', function(done) {
+  nugetpack({
+    id: "Angular.Summernote",
+    version: pkg.version,
+    authors: pkg.author.name,
+    description: pkg.description,
+    projectUrl: pkg.homepage,
+    licenseUrl: "https://github.com/summernote/angular-summernote/blob/master/LICENSE-MIT",
+    copyright: "MIT",
+    tags: pkg.keywords.join(' '),
+    outputDir: "out"
+  }, ['dist/*.js', 'README.md' ], done);
 });
