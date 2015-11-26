@@ -116,7 +116,7 @@ angular.module('summernote', [])
       restrict: 'EA',
       transclude: 'element',
       replace: true,
-      require: ['summernote', '^?ngModel'],
+      require: ['summernote', '?ngModel'],
       controller: 'SummernoteController',
       scope: {
         summernoteConfig: '=config',
