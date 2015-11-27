@@ -26,6 +26,7 @@
     }
   ],
   "devDependencies": {
+    "del": "^2.1.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
     "gulp-header": "^1.7.1",

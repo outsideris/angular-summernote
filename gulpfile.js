@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     header = require("gulp-header"),
     Server = require('karma').Server,
     coveralls = require('gulp-coveralls'),
+    del = require('del'),
     nugetpack = require('gulp-nuget-pack'),
     pkg = require('./package.json');
 
@@ -56,7 +57,13 @@ gulp.task('test:angular13', function() {
   gulp.start('karma');
 });
 
-gulp.task('travis', function(done) {
+gulp.task('clean:coverage', function () {
+  return del([
+    'coverage'
+  ]);
+});
+
+gulp.task('coveralls', ['clean:coverage'], function(done) {
   var configFile = '/test/karma.conf.js';
 
   var coveralls = function() {
@@ -74,6 +81,9 @@ gulp.task('travis', function(done) {
     coverageReporter: { type: 'lcov', dir: '../coverage/' },
     plugins: [ 'karma-*' ]
   }, coveralls).start();
+});
+
+gulp.task('travis', ['test', 'test:angular12', 'test:angular13'], function() {
 });
 
 gulp.task('nuget-pack', function(done) {
