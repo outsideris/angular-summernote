@@ -57,21 +57,8 @@ gulp.task('test:angular13', function() {
   gulp.start('karma');
 });
 
-gulp.task('clean:coverage', function () {
-  return del([
-    'coverage'
-  ]);
-});
-
-gulp.task('coveralls', ['clean:coverage'], function(done) {
+gulp.task('test:coverage', function(done) {
   var configFile = '/test/karma.conf.js';
-
-  var coveralls = function() {
-    gulp.src('coverage/**/lcov.info')
-      .pipe(coveralls());
-    done();
-  }
-
   new Server({
     configFile: __dirname + configFile,
     singleRun: true,
@@ -80,7 +67,18 @@ gulp.task('coveralls', ['clean:coverage'], function(done) {
     preprocessors: { '../**/src/**/*.js': 'coverage' },
     coverageReporter: { type: 'lcov', dir: '../coverage/' },
     plugins: [ 'karma-*' ]
-  }, coveralls).start();
+  }, done).start();
+});
+
+gulp.task('clean:coverage', function () {
+  return del([
+    'coverage'
+  ]);
+});
+
+gulp.task('coveralls', ['clean:coverage', 'test:coverage'], function() {
+  return gulp.src('./coverage/**/lcov.info')
+    .pipe(coveralls());
 });
 
 gulp.task('travis', ['test', 'test:angular12', 'test:angular13'], function() {

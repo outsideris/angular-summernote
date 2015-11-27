@@ -8,7 +8,10 @@ before_script:
 - npm install --quiet -g grunt-cli karma bower
 - npm install
 - bower install
-script: gulp travis
+script:
+- gulp travis
+after_script:
+- gulp coveralls
 before_deploy:
 - gulp build
 deploy:
