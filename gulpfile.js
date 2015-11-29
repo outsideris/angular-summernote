@@ -37,10 +37,18 @@ gulp.task('karma', function (done) {
   if (isAngular12) { configFile = '/test/karma-angular-1-2-x.conf.js'; }
   if (isAngular13) { configFile = '/test/karma-angular-1-3-x.conf.js'; }
 
-  new Server({
-    configFile: __dirname + configFile,
-    autoWatch: true
-  }, done).start();
+  if (!process.env.CI) {
+    new Server({
+      configFile: __dirname + configFile,
+      autoWatch: true
+    }, done).start();
+  } else {
+    new Server({
+      configFile: __dirname + configFile,
+      browsers: ['PhantomJS'],
+      singleRun: true
+    }, done).start();
+  }
 });
 
 gulp.task('test', function() {
