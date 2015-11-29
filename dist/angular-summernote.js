@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2013 JeongHoon Byun aka "Outsider", <http://blog.outsider.ne.kr/>
- * Licensed under the MIT license.
- * <http://outsider.mit-license.org/>
- */
+/*  angular-summernote v0.5.2 | (c) 2014, 2015 JeongHoon Byun | MIT license */
 /* global angular */
 angular.module('summernote', [])
 
@@ -121,7 +117,7 @@ angular.module('summernote', [])
       restrict: 'EA',
       transclude: 'element',
       replace: true,
-      require: ['summernote', '^?ngModel'],
+      require: ['summernote', '?ngModel'],
       controller: 'SummernoteController',
       scope: {
         summernoteConfig: '=config',

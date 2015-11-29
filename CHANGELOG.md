@@ -1,3 +1,7 @@
+# 0.5.2 (2015-11-29)
+* fix a broken ngModel binding with angular 1.3
+  [#84](https://github.com/summernote/angular-summernote/issues/84)
+
 # 0.5.1 (2015-10-05)
 * Support initial text from inner markup in directive
   [#77](https://github.com/summernote/angular-summernote/issues/77)
