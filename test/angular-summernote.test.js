@@ -214,12 +214,12 @@ describe('Summernote directive', function() {
       scope.text = oldText;
       var element = $compile('<summernote ng-model="text"></summernote>')(scope);
       scope.$digest();
-      expect(element.code()).to.be.equal(oldText);
+      expect(element.summernote('code')).to.be.equal(oldText);
       // when
       scope.text = newText;
       scope.$digest();
       // then
-      expect(element.code()).to.be.equal(newText);
+      expect(element.summernote('code')).to.be.equal(newText);
     });
 
     it('text should be synchronized when value are changed in summernote', function() {
@@ -229,9 +229,9 @@ describe('Summernote directive', function() {
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       var element = $compile(el)(scope);
       scope.$digest();
-      expect(element.code()).to.be.equal(oldText);
+      expect(element.summernote('code')).to.be.equal(oldText);
       // when
-      element.code(newText);
+      element.summernote('code', newText);
       $(element.next().find('.note-editable').eq(0)).trigger('input'); // to trigger onChange
       scope.$digest();
       // then
@@ -265,14 +265,14 @@ describe('Summernote directive', function() {
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       var element = $compile(el)(scope);
       scope.$digest();
-      expect(element.code()).to.be.equal(oldText);
+      expect(element.summernote('code')).to.be.equal(oldText);
       // when
       selectText($(element.next().find('.note-editable'))[0]);
       $(element.next().find('.note-font').find('button').eq(0)).click();
       scope.$digest();
       // then
       $timeout.flush();
-      expect(scope.text).to.be.equal(element.code());
+      expect(scope.text).to.be.equal(element.summernote('code'));
 
       el.next().remove();
       el.remove();
@@ -285,13 +285,13 @@ describe('Summernote directive', function() {
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       var element = $compile(el)(scope);
       scope.$digest();
-      expect(element.code()).to.be.equal(oldText);
+      expect(element.summernote('code')).to.be.equal(oldText);
       // when
       element.next().find('.note-view').find('button[data-event=codeview]').click();
       scope.text = newText;
       scope.$digest();
       // then
-      expect(element.code()).to.be.equal(newText);
+      expect(element.summernote('code')).to.be.equal(newText);
 
       el.next().remove();
       el.remove();
@@ -304,7 +304,7 @@ describe('Summernote directive', function() {
       var el = $('<summernote ng-Model="text"></summernote>').appendTo(document.body);
       var element = $compile(el)(scope);
       scope.$digest();
-      expect(element.code()).to.be.equal(oldText);
+      expect(element.summernote('code')).to.be.equal(oldText);
       // when
       element.next().find('.note-view').find('button[data-event=codeview]').click();
       element.next().find('.note-codable').val(newText);
@@ -339,8 +339,8 @@ describe('Summernote directive', function() {
 
       // then
       var timer = setInterval(function() {
-        if (element.code() !== text) {
-          expect(element.code()).to.match(/gravatar/);
+        if (element.summernote('code') !== text) {
+          expect(element.summernote('code')).to.match(/gravatar/);
 
           // tear down
           $('.note-toolbar').off('click', preventBubbling);
@@ -572,7 +572,7 @@ describe('Summernote directive', function() {
       var element = $compile('<summernote>'+html+'</summernote>')(scope);
       scope.$digest();
       // then
-      expect(element.code()).to.be.equal(html);
+      expect(element.summernote('code')).to.be.equal(html);
     });
 
     it('set blank html if no text in summernote directive', function() {
@@ -582,7 +582,7 @@ describe('Summernote directive', function() {
       var element = $compile('<summernote></summernote>')(scope);
       scope.$digest();
       // then
-      expect(element.code()).to.be.equal('<p><br></p>');
+      expect(element.summernote('code')).to.be.equal('<p><br></p>');
     });
   });
 });
