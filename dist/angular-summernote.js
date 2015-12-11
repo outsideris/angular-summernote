@@ -1,4 +1,4 @@
-/*  angular-summernote v0.5.2 | (c) 2014, 2015 JeongHoon Byun | MIT license */
+/*  angular-summernote v0.7.0 | (c) 2014, 2015 JeongHoon Byun | MIT license */
 /* global angular */
 angular.module('summernote', [])
 
@@ -18,21 +18,22 @@ angular.module('summernote', [])
       summernoteConfig.lang = $attrs.lang;
     }
 
-    summernoteConfig.onInit = $scope.init;
-    summernoteConfig.onEnter = function(evt) { $scope.enter({evt:evt}); };
-    summernoteConfig.onFocus = function(evt) { $scope.focus({evt:evt}); };
-    summernoteConfig.onPaste = function(evt) { $scope.paste({evt:evt}); };
-    summernoteConfig.onKeyup = function(evt) { $scope.keyup({evt:evt}); };
-    summernoteConfig.onKeydown = function(evt) { $scope.keydown({evt:evt}); };
+    var callbacks = {};
+    callbacks.onInit = $scope.init;
+    callbacks.onEnter = function(evt) { $scope.enter({evt:evt}); };
+    callbacks.onFocus = function(evt) { $scope.focus({evt:evt}); };
+    callbacks.onPaste = function(evt) { $scope.paste({evt:evt}); };
+    callbacks.onKeyup = function(evt) { $scope.keyup({evt:evt}); };
+    callbacks.onKeydown = function(evt) { $scope.keydown({evt:evt}); };
     if (angular.isDefined($attrs.onImageUpload)) {
-      summernoteConfig.onImageUpload = function(files) {
+      callbacks.onImageUpload = function(files) {
         $scope.imageUpload({files:files, editable: $scope.editable});
       };
     }
 
     this.activate = function(scope, element, ngModel) {
       var updateNgModel = function() {
-        var newValue = element.code();
+        var newValue = element.summernote('code');
         if (element.summernote('isEmpty')) { newValue = ''; }
         if (ngModel && ngModel.$viewValue !== newValue) {
           $timeout(function() {
@@ -41,21 +42,16 @@ angular.module('summernote', [])
         }
       };
 
-      summernoteConfig.onChange = function(contents) {
+      callbacks.onChange = function(contents) {
         if (element.summernote('isEmpty')) { contents = ''; }
         updateNgModel();
         $scope.change({contents:contents, editable: $scope.editable});
       };
-      summernoteConfig.onBlur = function(evt) {
+      callbacks.onBlur = function(evt) {
         (!summernoteConfig.airMode) && element.blur();
         $scope.blur({evt:evt});
       };
-      if (angular.isDefined($attrs.onToolbarClick)) {
-        element.on('summernote.toolbar.click', function (evt) {
-          $scope.toolbarClick({evt: evt});
-        });
-      }
-
+      summernoteConfig.callbacks = callbacks;
       element.summernote(summernoteConfig);
 
       var editor$ = element.next('.note-editor'),
@@ -83,7 +79,7 @@ angular.module('summernote', [])
 
       if (ngModel) {
         ngModel.$render = function() {
-          element.code(ngModel.$viewValue || '');
+          element.summernote('code', ngModel.$viewValue || '');
         };
       }
 
@@ -98,7 +94,7 @@ angular.module('summernote', [])
       currentElement = element;
       // use jquery Event binding instead $on('$destroy') to preserve options data of DOM
       element.on('$destroy', function() {
-        element.destroy();
+        element.summernote('destroy');
         $scope.summernoteDestroyed = true;
       });
     };
@@ -106,7 +102,7 @@ angular.module('summernote', [])
     $scope.$on('$destroy', function () {
       // when destroying scope directly
       if (!$scope.summernoteDestroyed) {
-        currentElement.destroy();
+        currentElement.summernote('destroy');
       }
     });
   }])
@@ -131,7 +127,6 @@ angular.module('summernote', [])
         keyup: '&onKeyup',
         keydown: '&onKeydown',
         change: '&onChange',
-        toolbarClick: '&onToolbarClick',
         imageUpload: '&onImageUpload'
       },
       template: '<div class="summernote"></div>',

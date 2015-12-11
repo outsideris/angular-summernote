@@ -10,6 +10,13 @@
 angular-summernote is just a directive to bind summmernote's all features.
 You can use summernote with angular way.
 
+**Since v0.7.x, the version of angular-summernote follows the version of summernote.
+So, angular-summernote v0.7.x are compatible with summernote v0.7.x and
+and angular-summernote v0.8.x will be compatible with summernote v0.8.x.
+Angular-summernote will match only `major.minor` with summernote.
+Therefore, angular-summernote v0.7.0 will be compatible with summernote v0.7.0, v0.7.1 and
+v0.7.2. Angular-summernote will release patch update, such as v0.7.1, if only angular-summernote has changed.**
+
 ## Table of Contents
 
 - [Demo](#demo)
@@ -25,7 +32,7 @@ You can use summernote with angular way.
 
 ## Demo
 
-See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/244/embedded/result%2Chtml%2Cjs%2Ccss/)
+See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/246/embedded/result%2Chtml%2Cjs%2Ccss/)
 or run example in projects(need to run `bower install` before run)
 
 ## Installation

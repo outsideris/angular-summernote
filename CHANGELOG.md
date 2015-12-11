@@ -1,3 +1,6 @@
+# 0.7.0 (2015-12-11)
+* Make compatible with summernote v0.7.0
+
 # 0.5.2 (2015-11-29)
 * fix a broken ngModel binding with angular 1.3
   [#84](https://github.com/summernote/angular-summernote/issues/84)
