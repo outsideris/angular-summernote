@@ -93,7 +93,7 @@ describe('Summernote directive', function() {
       var element = $compile('<summernote airMode></summernote>')($rootScope);
       $rootScope.$digest();
 
-      expect(element.hasClass('note-air-editor')).to.be.true;
+      expect(element.data('summernote').options.airMode).to.be.true;
     });
 
 
@@ -103,7 +103,8 @@ describe('Summernote directive', function() {
       var element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
       $rootScope.$digest();
 
-      expect(element.hasClass('note-air-editor')).to.be.true;
+      expect(element.data('summernote').options.airMode).to.be.true;
+
       element.next().remove();
       element.remove();
     });
@@ -157,8 +158,8 @@ describe('Summernote directive', function() {
       var element = $compile('<summernote lang="de-DE"></summernote>')(scope);
       $rootScope.$digest();
 
-      expect(element.next().find('.note-toolbar > .note-help .btn-default').attr('data-original-title'))
-        .to.be.equal('Hilfe');
+      expect(element.next().find('.note-toolbar > .note-view .btn-fullscreen').attr('data-original-title'))
+        .to.be.equal('Vollbild');
     });
   });
 
@@ -287,7 +288,7 @@ describe('Summernote directive', function() {
       scope.$digest();
       expect(element.summernote('code')).to.be.equal(oldText);
       // when
-      element.next().find('.note-view').find('button[data-event=codeview]').click();
+      element.next().find('.note-view').find('button.btn-codeview').click();
       scope.text = newText;
       scope.$digest();
       // then
@@ -306,7 +307,7 @@ describe('Summernote directive', function() {
       scope.$digest();
       expect(element.summernote('code')).to.be.equal(oldText);
       // when
-      element.next().find('.note-view').find('button[data-event=codeview]').click();
+      element.next().find('.note-view').find('button.btn-codeview').click();
       element.next().find('.note-codable').val(newText);
       $(element.next().find('.note-codable').eq(0)).trigger('keyup');
       scope.$digest();
@@ -329,13 +330,14 @@ describe('Summernote directive', function() {
       var preventBubbling = function(e) { e.stopPropagation(); };
       $('.note-toolbar').on('click', preventBubbling);
 
-      $(element.next().find('.note-insert').eq(0).find('button').eq(1)).click(); // image
+      $(element.next().find('.note-insert').find('button[data-original-title=Picture]')).click(); // image
 
-      expect(element.next().find('.note-image-dialog')).to.length(1);
+      var imageModal$ = element.next().find('.modal.in .modal-dialog');
+      expect(imageModal$).to.length(1);
       var imgUrl = 'https://www.gravatar.com/avatar/748a6dc8b4eaba0fde62909e39be7987?s=200';
-      element.next().find('.note-image-dialog').find('.note-image-url').val(imgUrl);
-      element.next().find('.note-image-dialog').find('.note-image-url').trigger('keyup');
-      element.next().find('.note-image-dialog').find('.note-image-btn').click();
+      imageModal$.find('.note-image-url').val(imgUrl);
+      imageModal$.find('.note-image-url').trigger('keyup');
+      imageModal$.find('.note-image-btn').click();
 
       // then
       var timer = setInterval(function() {
