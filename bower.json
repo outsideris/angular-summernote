@@ -33,7 +33,7 @@
     "url": "git://github.com/summernote/angular-summernote.git"
   },
   "dependencies": {
-    "summernote": "~0.6.4",
+    "summernote": "~0.7.0",
     "angular": "~1.4.0"
   },
   "devDependencies": {
