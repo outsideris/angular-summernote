@@ -98,7 +98,7 @@ angular.module('summernote', [])
       currentElement = element;
       // use jquery Event binding instead $on('$destroy') to preserve options data of DOM
       element.on('$destroy', function() {
-        element.destroy();
+        element.summernote('destroy');
         $scope.summernoteDestroyed = true;
       });
     };
@@ -106,7 +106,7 @@ angular.module('summernote', [])
     $scope.$on('$destroy', function () {
       // when destroying scope directly
       if (!$scope.summernoteDestroyed) {
-        currentElement.destroy();
+        currentElement.summernote('destroy');
       }
     });
   }])
