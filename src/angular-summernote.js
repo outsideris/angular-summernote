@@ -50,11 +50,6 @@ angular.module('summernote', [])
         (!summernoteConfig.airMode) && element.blur();
         $scope.blur({evt:evt});
       };
-      if (angular.isDefined($attrs.onToolbarClick)) {
-        element.on('summernote.toolbar.click', function (evt) {
-          $scope.toolbarClick({evt: evt});
-        });
-      }
       summernoteConfig.callbacks = callbacks;
       element.summernote(summernoteConfig);
 
@@ -131,7 +126,6 @@ angular.module('summernote', [])
         keyup: '&onKeyup',
         keydown: '&onKeydown',
         change: '&onChange',
-        toolbarClick: '&onToolbarClick',
         imageUpload: '&onImageUpload'
       },
       template: '<div class="summernote"></div>',
