@@ -45,6 +45,17 @@ angular.module('summernote', [])
         }
       };
 
+      if (ngModel) {
+        scope.$watch(function () {
+          return ngModel.$modelValue;
+        }, function(newValue) {
+          if(!!newValue) {
+            var event = jQuery.Event('summernote.change');
+            element.trigger(event, newValue);
+          }
+        });
+      }
+
       summernoteConfig.onChange = function(contents) {
         if (element.summernote('isEmpty')) { contents = ''; }
         updateNgModel();
@@ -70,18 +81,8 @@ angular.module('summernote', [])
         // sync ngModel in codeview mode
         if (editor$.hasClass('codeview')) {
           editor$.on('keyup', updateNgModel);
-          if (ngModel) {
-            unwatchNgModel = scope.$watch(function () {
-              return ngModel.$modelValue;
-            }, function(newValue) {
-              editor$.find('.note-codable').val(newValue);
-            });
-          }
         } else {
           editor$.off('keyup', updateNgModel);
-          if (angular.isFunction(unwatchNgModel)) {
-            unwatchNgModel();
-          }
         }
       });
 
