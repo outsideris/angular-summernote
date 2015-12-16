@@ -45,6 +45,19 @@ angular.module('summernote', [])
         }
       };
 
+      var unwatchOnChangeNgModel;
+
+      if (ngModel) {
+        unwatchOnChangeNgModel = scope.$watch(function () {
+          return ngModel.$modelValue;
+        }, function(newValue) {
+          if(!!newValue) {
+            var event = jQuery.Event('summernote.change');
+            element.trigger(event, newValue);
+          }
+        });
+      }
+
       summernoteConfig.onChange = function(contents) {
         if (element.summernote('isEmpty')) { contents = ''; }
         updateNgModel();
@@ -104,6 +117,9 @@ angular.module('summernote', [])
       element.on('$destroy', function() {
         element.destroy();
         $scope.summernoteDestroyed = true;
+        if (angular.isFunction(unwatchOnChangeNgModel)) {
+          unwatchOnChangeNgModel();
+        }
       });
     };
 
