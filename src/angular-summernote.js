@@ -8,6 +8,7 @@ angular.module('summernote', [])
         summernoteConfig = $scope.summernoteConfig || {};
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
+    if (angular.isDefined($attrs.placeholder)) { summernoteConfig.placeholder = $attrs.placeholder; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
     if (angular.isDefined($attrs.airmode)) { summernoteConfig.airMode = true; }
     if (angular.isDefined($attrs.lang)) {
