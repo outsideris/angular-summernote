@@ -69,7 +69,16 @@ describe('Summernote directive', function() {
       expect(element.next().find('.note-editable').eq(0).outerHeight()).to.be.equal(200);
       expect(element.next().find('.note-editable').eq(1).outerHeight()).to.be.equal(400);
     });
+  });
 
+  describe('"placeholder" option', function() {
+    it('should placeholder', function () {
+      var element = $compile('<summernote placeholder="This is a placeholder"></summernote>')($rootScope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-placeholder')).to.length(1);
+      expect(element.next().find('.note-placeholder').text()).to.be.equal('This is a placeholder');
+    });
   });
 
   // FIXME: summernote v0.7 has a bug in focus options
