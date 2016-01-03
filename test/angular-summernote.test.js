@@ -81,9 +81,7 @@ describe('Summernote directive', function() {
     });
   });
 
-  // FIXME: summernote v0.7 has a bug in focus options
-  // https://github.com/summernote/summernote/issues/1483
-  describe.skip('"focus" option', function() {
+  describe('"focus" option', function() {
     it('should be focused if it specified', function () {
       var el = $('<summernote focus height="400"></summernote>').appendTo(document.body);
       var element = $compile(el)($rootScope);
@@ -588,9 +586,7 @@ describe('Summernote directive', function() {
       expect(element.summernote('code')).to.be.equal(html);
     });
 
-    // FIXME: summernote v0.7 has a bug with contents
-    // https://github.com/summernote/summernote/issues/1468
-    it.skip('set blank html if no text in summernote directive', function() {
+    it('set blank html if no text in summernote directive', function() {
       // given
       var scope = $rootScope.$new();
       // when
