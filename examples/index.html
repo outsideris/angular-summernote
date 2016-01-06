@@ -80,7 +80,7 @@
     <div ng-controller="AirmodeCtrl">
       <h4>airmode</h4>
       <div class="example">
-        <summernote airMode ng-model="text"></summernote>
+        <summernote airMode ng-model="text" config="options" on-media-delete="mediaDelete(target)"></summernote>
       </div>
     </div>
 
@@ -130,6 +130,28 @@
         })
         .controller('AirmodeCtrl', function($scope) {
           $scope.text = "<h3>This is an Air-mode editable area.</h3>";
+          $scope.options = {
+            popover: {
+              image: [
+                ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                ['remove', ['removeMedia']]
+              ],
+              link: [
+                ['link', ['linkDialogShow', 'unlink']]
+              ],
+              air: [
+                ['color', ['color']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['para', ['ul', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']]
+              ]
+            }
+          };
+          $scope.mediaDelete = function(target) {
+            console.log('media is delted:', target);
+          }
         })
         .controller('CodeCtrl', function($scope) {
           $scope.text = "Hello World";

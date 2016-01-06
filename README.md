@@ -99,6 +99,39 @@ summernote's options can be specified as attributes.
 <summernote airMode></summernote>
 ```
 
+If you use the `removeMedia` button in popover, like below:
+
+```
+<summernote airMode config="options" on-media-delete="mediaDelete(target)"></summernote>
+```
+
+```
+function DemoController($scope) {
+  $scope.options = {
+    popover: {
+      image: [['remove', ['removeMedia']] ],
+      air: [['insert', ['picture']]]
+    }
+  };
+  $scope.mediaDelete = function(target) {
+    console.log('media is delted:', target);
+  }
+}
+```
+
+You can use the 'onMediaDelete` callback. The `target` object has information of the DOM that is removed like:
+
+```
+{
+  tagName: "IMG",
+  attrs: {
+    data-filename: "image-name.jpg",
+    src: "http://path/to/image",
+    style: "width: 100px;"
+  }
+}
+```
+
 #### options object
 
 You can specify all options using ngModel in `config` attribute.

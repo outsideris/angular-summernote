@@ -30,6 +30,17 @@ angular.module('summernote', [])
         $scope.imageUpload({files:files, editable: $scope.editable});
       };
     }
+    if (angular.isDefined($attrs.onMediaDelete)) {
+      callbacks.onMediaDelete = function(target) {
+        // make new object that has information of target to avoid error:isecdom
+        var removedMedia = {attrs: {}};
+        removedMedia.tagName = target[0].tagName;
+        angular.forEach(target[0].attributes, function(attr) {
+          removedMedia.attrs[attr.name] = attr.value;
+        });
+        $scope.mediaDelete({target: removedMedia});
+      }
+    }
 
     this.activate = function(scope, element, ngModel) {
       var updateNgModel = function() {
@@ -127,7 +138,8 @@ angular.module('summernote', [])
         keyup: '&onKeyup',
         keydown: '&onKeydown',
         change: '&onChange',
-        imageUpload: '&onImageUpload'
+        imageUpload: '&onImageUpload',
+        mediaDelete: '&onMediaDelete'
       },
       template: '<div class="summernote"></div>',
       link: function(scope, element, attrs, ctrls, transclude) {
