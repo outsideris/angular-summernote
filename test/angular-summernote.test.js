@@ -360,6 +360,21 @@ describe('Summernote directive', function() {
         }
       }, 200);
     });
+
+    it('should empty summernote when model is empty', function() {
+      // given
+      scope.text = 'Hello World';
+      var element = $compile($('<summernote ng-Model="text"></summernote>').appendTo(document.body))(scope);
+      scope.$digest();
+
+      // when
+      scope.text = '';
+      scope.$digest();
+
+      // then
+      expect(element.summernote('code')).to.not.equal('');
+      expect(element.summernote('isEmpty')).to.equal(true);
+    });
   });
 
   describe('callbacks', function() {
