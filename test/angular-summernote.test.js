@@ -71,6 +71,24 @@ describe('Summernote directive', function() {
     });
   });
 
+  describe('"min-height" option', function() {
+    it('should be 300 if it specified', function () {
+      var element = $compile('<summernote min-height="300"></summernote>')($rootScope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-editable').css('min-height')).to.be.equal('300px');
+    });
+  });
+
+  describe('"max-height" option', function() {
+    it('should be 500 if it specified', function () {
+      var element = $compile('<summernote max-height="500"></summernote>')($rootScope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-editable').css('max-height')).to.be.equal('500px');
+    });
+  });
+
   describe('"placeholder" option', function() {
     it('should placeholder', function () {
       var element = $compile('<summernote placeholder="This is a placeholder"></summernote>')($rootScope);
@@ -125,6 +143,8 @@ describe('Summernote directive', function() {
       scope = $rootScope.$new();
       scope.summernoteConfig = {
         height: 300,
+        minHeight: 200,
+        maxHeight: 500,
         focus: true,
         toolbar: [
           ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -141,6 +161,20 @@ describe('Summernote directive', function() {
       $rootScope.$digest();
 
       expect(element.next().find('.note-editable').outerHeight()).to.be.equal(300);
+    });
+
+    it('"minHeight" should be 300', function() {
+      var element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-editable').css('min-height')).to.be.equal('200px');
+    });
+
+    it('"maxHeight" should be 300', function() {
+      var element = $compile('<summernote config="summernoteConfig"></summernote>')(scope);
+      $rootScope.$digest();
+
+      expect(element.next().find('.note-editable').css('max-height')).to.be.equal('500px');
     });
 
     it('toolbar should be customized', function() {

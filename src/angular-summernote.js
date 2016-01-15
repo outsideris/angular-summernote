@@ -7,9 +7,9 @@ angular.module('summernote', [])
     var currentElement,
         summernoteConfig = $scope.summernoteConfig || {};
 
-    if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
-    if (angular.isDefined($attrs.minHeight)) { summernoteConfig.minHeight = $attrs.minHeight; }
-    if (angular.isDefined($attrs.maxHeight)) { summernoteConfig.maxHeight = $attrs.maxHeight; }
+    if (angular.isDefined($attrs.height)) { summernoteConfig.height = +$attrs.height; }
+    if (angular.isDefined($attrs.minHeight)) { summernoteConfig.minHeight = +$attrs.minHeight; }
+    if (angular.isDefined($attrs.maxHeight)) { summernoteConfig.maxHeight = +$attrs.maxHeight; }
     if (angular.isDefined($attrs.placeholder)) { summernoteConfig.placeholder = $attrs.placeholder; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
     if (angular.isDefined($attrs.airmode)) { summernoteConfig.airMode = true; }
