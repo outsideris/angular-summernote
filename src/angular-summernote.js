@@ -90,7 +90,11 @@ angular.module('summernote', [])
 
       if (ngModel) {
         ngModel.$render = function() {
-          element.summernote('code', ngModel.$viewValue || '');
+          if (ngModel.$viewValue) {
+            element.summernote('code', ngModel.$viewValue);
+          } else {
+            element.summernote('empty');
+          }
         };
       }
 
