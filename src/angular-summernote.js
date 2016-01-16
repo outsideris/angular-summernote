@@ -56,8 +56,10 @@ angular.module('summernote', [])
       };
 
       callbacks.onChange = function(contents) {
-        if (element.summernote('isEmpty')) { contents = ''; }
-        updateNgModel();
+        $timeout(function() {
+          if (element.summernote('isEmpty')) { contents = ''; }
+          updateNgModel();
+        }, 0);
         $scope.change({contents:contents, editable: $scope.editable});
       };
       callbacks.onBlur = function(evt) {
