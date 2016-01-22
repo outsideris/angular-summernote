@@ -1,4 +1,4 @@
-/*  angular-summernote v0.7.0 | (c) 2014, 2015 JeongHoon Byun | MIT license */
+/*  angular-summernote v0.7.1 | (c) 2016 JeongHoon Byun | MIT license */
 /* global angular */
 angular.module('summernote', [])
 
@@ -8,7 +8,10 @@ angular.module('summernote', [])
     var currentElement,
         summernoteConfig = $scope.summernoteConfig || {};
 
-    if (angular.isDefined($attrs.height)) { summernoteConfig.height = $attrs.height; }
+    if (angular.isDefined($attrs.height)) { summernoteConfig.height = +$attrs.height; }
+    if (angular.isDefined($attrs.minHeight)) { summernoteConfig.minHeight = +$attrs.minHeight; }
+    if (angular.isDefined($attrs.maxHeight)) { summernoteConfig.maxHeight = +$attrs.maxHeight; }
+    if (angular.isDefined($attrs.placeholder)) { summernoteConfig.placeholder = $attrs.placeholder; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
     if (angular.isDefined($attrs.airmode)) { summernoteConfig.airMode = true; }
     if (angular.isDefined($attrs.lang)) {
@@ -30,6 +33,17 @@ angular.module('summernote', [])
         $scope.imageUpload({files:files, editable: $scope.editable});
       };
     }
+    if (angular.isDefined($attrs.onMediaDelete)) {
+      callbacks.onMediaDelete = function(target) {
+        // make new object that has information of target to avoid error:isecdom
+        var removedMedia = {attrs: {}};
+        removedMedia.tagName = target[0].tagName;
+        angular.forEach(target[0].attributes, function(attr) {
+          removedMedia.attrs[attr.name] = attr.value;
+        });
+        $scope.mediaDelete({target: removedMedia});
+      }
+    }
 
     this.activate = function(scope, element, ngModel) {
       var updateNgModel = function() {
@@ -43,8 +57,10 @@ angular.module('summernote', [])
       };
 
       callbacks.onChange = function(contents) {
-        if (element.summernote('isEmpty')) { contents = ''; }
-        updateNgModel();
+        $timeout(function() {
+          if (element.summernote('isEmpty')) { contents = ''; }
+          updateNgModel();
+        }, 0);
         $scope.change({contents:contents, editable: $scope.editable});
       };
       callbacks.onBlur = function(evt) {
@@ -79,7 +95,11 @@ angular.module('summernote', [])
 
       if (ngModel) {
         ngModel.$render = function() {
-          element.summernote('code', ngModel.$viewValue || '');
+          if (ngModel.$viewValue) {
+            element.summernote('code', ngModel.$viewValue);
+          } else {
+            element.summernote('empty');
+          }
         };
       }
 
@@ -127,7 +147,8 @@ angular.module('summernote', [])
         keyup: '&onKeyup',
         keydown: '&onKeydown',
         change: '&onChange',
-        imageUpload: '&onImageUpload'
+        imageUpload: '&onImageUpload',
+        mediaDelete: '&onMediaDelete'
       },
       template: '<div class="summernote"></div>',
       link: function(scope, element, attrs, ctrls, transclude) {

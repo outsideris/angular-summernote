@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     nugetpack = require('gulp-nuget-pack'),
     pkg = require('./package.json');
 
-var banner = '/*  angular-summernote v<%=pkg.version%> | (c) 2014, 2015 JeongHoon Byun | MIT license */\n';
+var banner = '/*  angular-summernote v<%=pkg.version%> | (c) 2016 JeongHoon Byun | MIT license */\n';
 var isAngular12 = isAngular13 = false;
 
 gulp.task('lint', function() {

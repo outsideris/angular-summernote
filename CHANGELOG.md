@@ -1,3 +1,14 @@
+# 0.7.1 (2016-01-22)
+* Fix a bug that load 2 editor on IE(it is a workaround)
+  [#98](https://github.com/summernote/angular-summernote/issues/98)
+* Fix a bug when content is empty
+  [#105](https://github.com/summernote/angular-summernote/pull/105)
+* Support placeholder, min height and max height options
+  [#97](https://github.com/summernote/angular-summernote/pull/97),
+  [#104](https://github.com/summernote/angular-summernote/pull/104)
+* Supoort on-media-delete callback
+  [#92](https://github.com/summernote/angular-summernote/issues/92)
+
 # 0.7.0 (2015-12-11)
 * Make compatible with summernote v0.7.0
 
