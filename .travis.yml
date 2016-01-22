@@ -18,7 +18,7 @@ deploy:
   provider: npm
   email: outsideris@gmail.com
   api_key:
-    secure: KuxrTSTdHMJl4Ma987odsgY4YRe/4u1eLsjCcnUvvBR6Jcmw3lWwZ0NmcGMyb5vYiYMrpa0+BfjmKx+EaUSrLGZGRZjgi1fI19sA6oFncHFHatcCzIfsuxFKOJeQpyNfm2LGVGLe6Tgs/AN/eKqy8cRowewgyi2JAYYbPlCLyEs=
+    secure: wSQbyLkBtu+B+9aACh+8+AbPxT7CD1nEzN1ZalIm8b/fzmzrSA74G4HSmu3QASEZwtNhwH+DbjjH5UjboWMg0hK+qvc4WaCyjpWDfKVJemiR1hgrasgIdID5rrDOD9cDeSWZsxD0tRwFwMNtVlZp2iiXeBxQzeu5Iaq5umxA+Hg=
   on:
     tags: true
     repo: summernote/angular-summernote
