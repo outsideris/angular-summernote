@@ -5,7 +5,7 @@ angular.module('summernote', [])
     'use strict';
 
     var currentElement,
-        summernoteConfig = $scope.summernoteConfig || {};
+        summernoteConfig = angular.copy($scope.summernoteConfig) || {};
 
     if (angular.isDefined($attrs.height)) { summernoteConfig.height = +$attrs.height; }
     if (angular.isDefined($attrs.minHeight)) { summernoteConfig.minHeight = +$attrs.minHeight; }
@@ -20,18 +20,38 @@ angular.module('summernote', [])
       summernoteConfig.lang = $attrs.lang;
     }
 
-    var callbacks = {};
-    callbacks.onInit = $scope.init;
-    callbacks.onEnter = function(evt) { $scope.enter({evt:evt}); };
-    callbacks.onFocus = function(evt) { $scope.focus({evt:evt}); };
-    callbacks.onPaste = function(evt) { $scope.paste({evt:evt}); };
-    callbacks.onKeyup = function(evt) { $scope.keyup({evt:evt}); };
-    callbacks.onKeydown = function(evt) { $scope.keydown({evt:evt}); };
+    var callbacks = {},
+        originalCallbacks = summernoteConfig.callbacks||{};
+    callbacks.onInit = function(evt) {
+      $scope.init.apply(this,arguments);
+      !evt.defaultPrevented && angular.isFunction(originalCallbacks.onInit) && originalCallbacks.apply(this,arguments);
+    };
+    callbacks.onEnter = function(evt) { 
+      $scope.enter({evt:evt}); 
+      !evt.defaultPrevented && angular.isFunction(originalCallbacks.onEnter) && originalCallbacks.onEnter.apply(this,arguments);
+    };
+    callbacks.onFocus = function(evt) { 
+      $scope.focus({evt:evt}); 
+      !evt.defaultPrevented && angular.isFunction(originalCallbacks.onFocus) && originalCallbacks.onFocus.apply(this,arguments);
+    };
+    callbacks.onPaste = function(evt) { 
+      $scope.paste({evt:evt}); 
+      !evt.defaultPrevented && angular.isFunction(originalCallbacks.onPaste) && originalCallbacks.onPaste.apply(this,arguments);
+    };
+    callbacks.onKeyup = function(evt) { 
+      $scope.keyup({evt:evt}); 
+      !evt.defaultPrevented && angular.isFunction(originalCallbacks.onKeyup) && originalCallbacks.onKeyup.apply(this,arguments);
+    };
+    callbacks.onKeydown = function(evt) { 
+      $scope.keydown({evt:evt}); 
+      !evt.defaultPrevented && angular.isFunction(originalCallbacks.onKeydown) && originalCallbacks.onKeydown.apply(this,arguments);
+    };
     if (angular.isDefined($attrs.onImageUpload)) {
       callbacks.onImageUpload = function(files) {
         $scope.imageUpload({files:files, editable: $scope.editable});
+        angular.isFunction(originalCallbacks.onImageUpload) && originalCallbacks.onImageUpload.apply(this,arguments);
       };
-    }
+    }else callbacks.onImageUpload = originalCallbacks.onImageUpload;
     if (angular.isDefined($attrs.onMediaDelete)) {
       callbacks.onMediaDelete = function(target) {
         // make new object that has information of target to avoid error:isecdom
@@ -41,8 +61,9 @@ angular.module('summernote', [])
           removedMedia.attrs[attr.name] = attr.value;
         });
         $scope.mediaDelete({target: removedMedia});
+        angular.isFunction(originalCallbacks.onMediaDelete) && originalCallbacks.onMediaDelete.apply(this,arguments);
       }
-    }
+    }else callbacks.onMediaDelete = originalCallbacks.onMediaDelete;
 
     this.activate = function(scope, element, ngModel) {
       var updateNgModel = function() {
@@ -61,10 +82,12 @@ angular.module('summernote', [])
           updateNgModel();
         }, 0);
         $scope.change({contents:contents, editable: $scope.editable});
+        angular.isFunction(originalCallbacks.onChange) && originalCallbacks.onChange.apply(this,arguments);
       };
       callbacks.onBlur = function(evt) {
         (!summernoteConfig.airMode) && element.blur();
         $scope.blur({evt:evt});
+        !evt.defaultPrevented && angular.isFunction(originalCallbacks.onBlur) && originalCallbacks.onBlur.apply(this,arguments);
       };
       summernoteConfig.callbacks = callbacks;
       element.summernote(summernoteConfig);
