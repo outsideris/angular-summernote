@@ -42,7 +42,7 @@ angular.module('summernote', [])
           removedMedia.attrs[attr.name] = attr.value;
         });
         $scope.mediaDelete({target: removedMedia});
-    };
+      }
     }
 
     this.activate = function(scope, element, ngModel) {
@@ -153,25 +153,14 @@ angular.module('summernote', [])
       template: '<div class="summernote"></div>',
       link: function(scope, element, attrs, ctrls, transclude) {
         var summernoteController = ctrls[0],
-          ngModel = ctrls[1];
+            ngModel = ctrls[1];
 
-          if (!ngModel)
-          {
-            transclude(scope, function(clone, scope) {
-              // to prevent binding to angular scope (It require `tranclude: 'element'`)
-              element.append(clone.html());
-            });
-            summernoteController.activate(scope, element, ngModel);
-          }
-          else
-          {
-            scope.$watch(function() {
-              return ngModel.$viewValue;
-            }, function(value) {
-              element.append(value);
-              summernoteController.activate(scope, element, ngModel);
-            }, true);
-          }
+        transclude(scope, function(clone, scope) {
+          // to prevent binding to angular scope (It require `tranclude: 'element'`)
+          element.append(clone.html());
+        });
+
+        summernoteController.activate(scope, element, ngModel);
       }
     };
   }]);
