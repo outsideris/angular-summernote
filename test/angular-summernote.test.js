@@ -284,6 +284,18 @@ describe('Summernote directive', function() {
       el.remove();
     });
 
+    it('element text should be blank in outer scope before digesting', function() {
+      // given
+      var blankText = '', helloText = 'Hello World';
+      var element = $compile('<summernote ng-model="text"></summernote>')(scope);
+      scope.text = helloText;
+      expect(element.html()).to.be.equal(blankText);
+      // when
+      scope.$digest();
+      // then
+      expect(element.html()).to.be.equal(helloText);
+    });
+
     it('text should be synchronized when text is changed using toolbar', function() {
       var selectText = function(element){
         var doc = document,
