@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     pkg = require('./package.json');
 
 var banner = '/*  angular-summernote v<%=pkg.version%> | (c) 2016 JeongHoon Byun | MIT license */\n';
-var isAngular12 = isAngular13 = false;
+var isAngular12 = isAngular13 = isAngular14 = false;
 
 gulp.task('lint', function() {
   return gulp.src(['./src/**/*.js', './test/**/*.test.js'])
@@ -36,6 +36,7 @@ gulp.task('karma', function (done) {
   var configFile = '/test/karma.conf.js';
   if (isAngular12) { configFile = '/test/karma-angular-1-2-x.conf.js'; }
   if (isAngular13) { configFile = '/test/karma-angular-1-3-x.conf.js'; }
+  if (isAngular14) { configFile = '/test/karma-angular-1-4-x.conf.js'; }
 
   if (!process.env.CI) {
     new Server({
@@ -65,6 +66,11 @@ gulp.task('test:angular13', function() {
   gulp.start('karma');
 });
 
+gulp.task('test:angular14', function() {
+  isAngular14 = true;
+  gulp.start('karma');
+});
+
 gulp.task('test:coverage', function(done) {
   var configFile = '/test/karma.conf.js';
   new Server({
@@ -89,7 +95,7 @@ gulp.task('coveralls', ['clean:coverage', 'test:coverage'], function() {
     .pipe(coveralls());
 });
 
-gulp.task('travis', ['test', 'test:angular12', 'test:angular13'], function() {
+gulp.task('travis', ['test', 'test:angular12', 'test:angular13', 'test:angular14'], function() {
 });
 
 gulp.task('nuget-pack', function(done) {
