@@ -1,3 +1,11 @@
+# 0.8.0 (2016-02-04)
+* Support Summernote v0.8.x
+* Support [AngularJS 1.5.x]
+* Keep callbacks in the configuration object
+  [#112](https://github.com/summernote/angular-summernote/pull/112)
+* Fux a summernote history stack issue with empty model
+  [#109](https://github.com/summernote/angular-summernote/pull/109)
+
 # 0.7.1 (2016-01-22)
 * Fix a bug that load 2 editor on IE(it is a workaround)
   [#98](https://github.com/summernote/angular-summernote/issues/98)
