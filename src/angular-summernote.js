@@ -13,6 +13,7 @@ angular.module('summernote', [])
     if (angular.isDefined($attrs.placeholder)) { summernoteConfig.placeholder = $attrs.placeholder; }
     if (angular.isDefined($attrs.focus)) { summernoteConfig.focus = true; }
     if (angular.isDefined($attrs.airmode)) { summernoteConfig.airMode = true; }
+    if (angular.isDefined($attrs.dialogsinbody)) { summernoteConfig.dialogsInBody = true; }
     if (angular.isDefined($attrs.lang)) {
       if (!angular.isDefined($.summernote.lang[$attrs.lang])) {
         throw new Error('"' + $attrs.lang + '" lang file must be exist.');
