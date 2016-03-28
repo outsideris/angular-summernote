@@ -31,7 +31,7 @@ v0.7.2. Angular-summernote will release patch update, such as v0.7.1, if only an
 
 ## Demo
 
-See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/314/embedded/result%2Chtml%2Cjs%2Ccss/)
+See at [JSFiddle](http://jsfiddle.net/outsider/n8dt4/322/embedded/result%2Chtml%2Cjs%2Ccss/)
 or run example in projects(need to run `bower install` before run)
 
 ## Installation

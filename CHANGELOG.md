@@ -1,9 +1,16 @@
+# 0.8.1 (2016-03-29)
+* Fix a performance issue that introduced in v0.8.0. There was a
+  reactivating editor problem in case of ngModel is provided and
+  editor's contents updated.
+  [#117](https://github.com/summernote/angular-summernote/pull/117),
+  [#119](https://github.com/summernote/angular-summernote/pull/119)
+
 # 0.8.0 (2016-02-04)
 * Support Summernote v0.8.x
 * Support [AngularJS 1.5.x]
 * Keep callbacks in the configuration object
   [#112](https://github.com/summernote/angular-summernote/pull/112)
-* Fux a summernote history stack issue with empty model
+* Fix a summernote history stack issue with empty model
   [#109](https://github.com/summernote/angular-summernote/pull/109)
 
 # 0.7.1 (2016-01-22)
