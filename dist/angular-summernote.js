@@ -96,6 +96,15 @@ angular.module('summernote', [])
           originalOnChange.apply(this, arguments);
         }
       };
+      var originalOnEnter = summernoteConfig.callbacks.onEnter;
+      summernoteConfig.callbacks.onEnter = function (evt) {
+        $timeout(function () {
+          updateNgModel();
+        }, 0);
+        if (angular.isFunction(originalOnEnter)) {
+          originalOnEnter.apply(this, arguments);
+        }
+      };
       if (angular.isDefined($attrs.onBlur)) {
         summernoteConfig.callbacks.onBlur = function (evt) {
           (!summernoteConfig.airMode) && element.blur();
