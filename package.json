@@ -7,7 +7,7 @@
     "email": "outsideris@gmail.com",
     "url": "http://blog.outsider.ne.kr/"
   },
-  "main": "dist/angular-summernote.js"
+  "main": "dist/angular-summernote.js",
   "keywords": [
     "editor",
     "bootstrap",
