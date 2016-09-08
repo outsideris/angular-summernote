@@ -152,6 +152,10 @@ angular.module('summernote', [])
       if (angular.isDefined($attrs.editor)) {
         $scope.editor = element;
       }
+      
+      if (angular.isDefined($attrs.readOnly)) {
+ 		      element.summernote($attrs.readOnly == "true" ? 'enable' : 'disable');
+      }
 
       currentElement = element;
       // use jquery Event binding instead $on('$destroy') to preserve options data of DOM
