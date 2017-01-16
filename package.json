@@ -20,12 +20,7 @@
     "type": "git",
     "url": "https://github.com/outsideris/involved.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://outsider.mit-license.org/"
-    }
-  ],
+  "license": "MIT",
   "devDependencies": {
     "del": "^2.1.0",
     "gulp": "^3.9.0",
@@ -47,6 +42,7 @@
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
     "mocha": "~2.2.0",
+    "phantomjs": "^2.1.7",
     "requirejs": "~2.1.10"
   },
   "dependencies": {}
