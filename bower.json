@@ -20,7 +20,7 @@
         ".bowerrc",
         ".coveralls.yml"
     ],
-    "keywords": ["angular.js", "summernote", "editor", "directive"],
+    "keywords": ["angular.js", "summernote-wb55s", "editor", "directive"],
     "authors": [{
         "name": "\"Outsider\" Jeonghoon Byun",
         "email": "outsideris@gmail.com",
