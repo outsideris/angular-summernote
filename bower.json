@@ -31,7 +31,7 @@
         "url": "git://github.com/wb55s/summernote"
     },
     "dependencies": {
-        "summernote": "summernote-blur#^0.8.2",
+        "summernote": "git://github.com/wb55s/summernote",
         "angular": "~1.5.0"
     },
     "devDependencies": {
