@@ -28,7 +28,7 @@
     }],
     "repository": {
         "type": "git",
-        "url": "git://github.com/summernote/angular-summernote.git"
+        "url": "git://github.com/wb55s/summernote"
     },
     "dependencies": {
         "summernote": "summernote-blur#^0.8.2",
