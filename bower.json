@@ -28,7 +28,7 @@
     }],
     "repository": {
         "type": "git",
-        "url": "git://github.com/wb55s/summernote"
+        "url": "https://github.com/wb55s/angular-summernote"
     },
     "dependencies": {
         "summernote": "https://github.com/wb55s/summernote.git",
