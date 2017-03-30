@@ -20,7 +20,7 @@
         ".bowerrc",
         ".coveralls.yml"
     ],
-    "keywords": ["angular.js", "summernote-wb55s", "editor", "directive"],
+    "keywords": ["angular.js", "summernote", "editor", "directive"],
     "authors": [{
         "name": "\"Outsider\" Jeonghoon Byun",
         "email": "outsideris@gmail.com",
@@ -31,7 +31,7 @@
         "url": "git://github.com/wb55s/summernote"
     },
     "dependencies": {
-        "summernote-wb55s": "git://github.com/wb55s/summernote",
+        "summernote": "https://github.com/wb55s/summernote.git",
         "angular": "~1.5.0"
     },
     "devDependencies": {
