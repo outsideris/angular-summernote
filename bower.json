@@ -22,6 +22,7 @@
     ],
     "keywords": ["angular.js", "summernote", "editor", "directive"],
     "authors": [{
+
         "name": "\"Outsider\" Jeonghoon Byun",
         "email": "outsideris@gmail.com",
         "url": "http://blog.outsider.ne.kr/"
