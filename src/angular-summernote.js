@@ -74,6 +74,7 @@ angular.module('summernote', [])
       var updateNgModel = function() {
         var newValue = element.summernote('code');
         if (element.summernote('isEmpty')) { newValue = ''; }
+        if (scope.ngRequired) { ngModel.$setValidity('required', !element.summernote('isEmpty')); }
         if (ngModel && ngModel.$viewValue !== newValue) {
           $timeout(function() {
             ngModel.$setViewValue(newValue);
@@ -181,6 +182,7 @@ angular.module('summernote', [])
         summernoteConfig: '=config',
         editable: '=',
         editor: '=',
+        ngRequired: '=?ngRequired',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',
