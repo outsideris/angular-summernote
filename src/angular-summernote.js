@@ -161,6 +161,14 @@ angular.module('summernote', [])
       });
     };
 
+    $scope.$watch('disabled', function (newVal) {
+      if (newVal) {
+        currentElement.summernote('disable');
+      } else {
+        currentElement.summernote('enable');
+      }
+    });
+
     $scope.$on('$destroy', function () {
       // when destroying scope directly
       if (!$scope.summernoteDestroyed) {
@@ -181,6 +189,7 @@ angular.module('summernote', [])
         summernoteConfig: '=config',
         editable: '=',
         editor: '=',
+        disabled: '=',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',
