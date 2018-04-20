@@ -96,6 +96,15 @@ angular.module('summernote', [])
           originalOnChange.apply(this, arguments);
         }
       };
+      var originalOnEnter = summernoteConfig.callbacks.onEnter;
+      summernoteConfig.callbacks.onEnter = function (evt) {
+        $timeout(function () {
+          updateNgModel();
+        }, 0);
+        if (angular.isFunction(originalOnEnter)) {
+          originalOnEnter.apply(this, arguments);
+        }
+      };
       if (angular.isDefined($attrs.onBlur)) {
         summernoteConfig.callbacks.onBlur = function (evt) {
           (!summernoteConfig.airMode) && element.blur();
@@ -153,6 +162,14 @@ angular.module('summernote', [])
       });
     };
 
+    $scope.$watch('disabled', function (newVal) {
+      if (newVal) {
+        currentElement.summernote('disable');
+      } else {
+        currentElement.summernote('enable');
+      }
+    });
+
     $scope.$on('$destroy', function () {
       // when destroying scope directly
       if (!$scope.summernoteDestroyed) {
@@ -173,6 +190,7 @@ angular.module('summernote', [])
         summernoteConfig: '=config',
         editable: '=',
         editor: '=',
+        disabled: '=',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',
