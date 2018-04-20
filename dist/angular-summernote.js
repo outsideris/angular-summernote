@@ -160,15 +160,15 @@ angular.module('summernote', [])
         element.summernote('destroy');
         $scope.summernoteDestroyed = true;
       });
-    };
 
-    $scope.$watch('disabled', function (newVal) {
-      if (newVal) {
-        currentElement.summernote('disable');
-      } else {
-        currentElement.summernote('enable');
-      }
-    });
+      $scope.$watch('disabled', function (newVal) {
+        if (newVal) {
+          currentElement.summernote('disable');
+        } else {
+          currentElement.summernote('enable');
+        }
+      });
+    };
 
     $scope.$on('$destroy', function () {
       // when destroying scope directly
