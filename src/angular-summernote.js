@@ -74,10 +74,12 @@ angular.module('summernote', [])
       var updateNgModel = function() {
         var newValue = element.summernote('code');
         if (element.summernote('isEmpty')) { newValue = ''; }
+        if (scope.ngRequired) { ngModel.$setValidity('required', !element.summernote('isEmpty')); }
         if (ngModel && ngModel.$viewValue !== newValue) {
-          $timeout(function() {
-            ngModel.$setViewValue(newValue);
-          }, 0);
+          ngModel.$setViewValue(newValue);
+          if (scope.$root && !scope.$root.$$phase) {
+            scope.$apply();
+          }
         }
       };
 
@@ -159,6 +161,14 @@ angular.module('summernote', [])
         element.summernote('destroy');
         $scope.summernoteDestroyed = true;
       });
+
+      $scope.$watch('disabled', function (newVal) {
+        if (newVal) {
+          currentElement.summernote('disable');
+        } else {
+          currentElement.summernote('enable');
+        }
+      });
     };
 
     $scope.$on('$destroy', function () {
@@ -181,6 +191,8 @@ angular.module('summernote', [])
         summernoteConfig: '=config',
         editable: '=',
         editor: '=',
+        ngRequired: '=?ngRequired',
+        disabled: '=',
         init: '&onInit',
         enter: '&onEnter',
         focus: '&onFocus',
