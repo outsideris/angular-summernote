@@ -16,9 +16,10 @@ before_deploy:
 - gulp build
 deploy:
   provider: npm
-  email: outsideris@gmail.com
+  email: toyjhlee@gmail.com
   api_key:
     secure: wSQbyLkBtu+B+9aACh+8+AbPxT7CD1nEzN1ZalIm8b/fzmzrSA74G4HSmu3QASEZwtNhwH+DbjjH5UjboWMg0hK+qvc4WaCyjpWDfKVJemiR1hgrasgIdID5rrDOD9cDeSWZsxD0tRwFwMNtVlZp2iiXeBxQzeu5Iaq5umxA+Hg=
   on:
-    tags: true
-    repo: summernote/angular-summernote
+    # tags: true
+    branch: master
+    repo: toyjhlee/angular-summernote
