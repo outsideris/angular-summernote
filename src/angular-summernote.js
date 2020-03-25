@@ -71,6 +71,9 @@ angular.module('summernote', [])
     }
 
     this.activate = function(scope, element, ngModel) {
+      if ($attrs.disabled) {
+        element.summernote('disable');
+      }
       var updateNgModel = function() {
         var newValue = element.summernote('code');
         if (element.summernote('isEmpty')) { newValue = ''; }
